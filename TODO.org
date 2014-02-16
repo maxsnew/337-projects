@@ -1,0 +1,13 @@
+* TODO Extract from Tweets
+  1. [ ] Names of the hosts
+  2. [ ] Winner of each award
+  3. [ ] Presenters(s) of each award
+  4. [ ] Nominees for each award
+  5. [ ] Something sexy
+     + Sentiment analysis is probably easiest
+     + Ugliest dress?
+     + Most divisive award?
+* TODO Pre-extract from Wiki/other sources
+  1. [ ] Award categories
+  2. [ ] Hosts?
+  3. [ ] Nominees?
