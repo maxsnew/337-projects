@@ -8,6 +8,7 @@
      + Ugliest dress?
      + Most divisive award?
 * TODO Pre-extract from Wiki/other sources
-  1. [ ] Award categories
-  2. [ ] Hosts?
-  3. [ ] Nominees?
+  1. [ ] Which award show?
+  2. [ ] Award categories
+  3. [ ] Hosts?
+  4. [ ] Nominees?
