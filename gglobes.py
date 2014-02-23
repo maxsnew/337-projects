@@ -17,10 +17,16 @@ def make_corpus(fn='goldenglobes.json'):
         ]
     return nltk.Text(words, 'Golden Globes Tweets')
 
+def write_pkl(dat, fn):
+    with open(fn, 'w') as f:
+        pickle.dump(dat, f)
+
 def write_corpus(corpus, fn='goldenglobes.pkl'):
     """Serialize a premade corpus to disk"""
-    with open(fn, 'w') as f:
-        pickle.dump(corpus, f)
+    write_pkl(corpus, fn)
+
+def write_fdist(fdist, fn='fdist.pkl'):
+    write_pkl(fdist, fn)
 
 def load_pkl(fn):
     with open(fn, 'r') as f:
