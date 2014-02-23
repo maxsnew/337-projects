@@ -5,6 +5,8 @@ import re
 
 import wikipedia as wiki
 
+from nltk import FreqDist
+
 # Scraped and then manually filtered out
 awards = [u'Best Drama Series',
           u'Best Comedy Series',
@@ -32,35 +34,21 @@ awards = [u'Best Drama Series',
           u'Best Foreign Language Film',
           u'Best Animated Feature Film ']
 
-awards = [ 'Best Motion Picture Drama',
-           'Best Motion Picture Musical or Comedy',
-           'Best Director',
-           'Best Actor Motion Picture Drama'
-]
+bestDrama = ['Argo','Django','Pi','Lincoln','Zero']
+bestMC = ['Les', 'Exotic','Moonrise','Salmon','Silver']
+drama_M = ['Daniel','Richard','John','Joaquin','Denzel']
+drama_F = ['Jessica','Marion', 'Helen', 'Naomi', 'Rachel']
+MC_male = ['Hugh','Jack','Bradley','Ewan','Bill']
+MC_female = ['Jennifer','Emily','Judy','Maggie','Meryl']
+support_M = ['Christoph', 'Alan', 'Leonardo','Philip','Tommy']
+support_F = ['Anne','Amy','Sally','Helen','Nicole']
+director = ['Ben','Kathryn','Ang','Steven','Quentin']
+screenplay = ['Quentin','Chris','Tony','David','Mark']
+score = ['Mychael','Dario','Alexandre','John','Tom']
+song = ['Adele','Keith','Taylor','Claude']
+animated = ['Brave', 'Frankenweenie','Transylvania','Rise','Ralph']
+foreign = ['Amour','Royal','Intouchables','Tiki','Rust']
 
-def scrape_awards_section(sec):
-    """Get the awards out of a section"""
-    return [a for (a,b) in re.findall('(Best[^\(\n]*)(\(since\))?.*', sec)]
-
-def find_awards(page_name='Golden Globes'):
-    """Find out what all the awards are!"""
-    p = wiki.page(page_name)
-    mpawards = [award for award in scrape_awards('Motion picture awards')].split('\n')
-    tvawards = [award for award in scrape_awards('Television awards')].split('\n')
-    awards = [award 
-              for sec in sections 
-              for award in scrape_awards_section(p.section(sec)) 
-              if not ('awarded' in award.lower()) and not (re.match('[0-9]{4}', award))
-    ]
-    return awards
-
-def get_tweets(fn='goldenglobes.json'):
-    """Make an array of tweets directly loaded from json"""
-    with open(fn, 'r') as f:
-        tweets = [
-            json.loads(l)
-            for l in f
-        ]
 
 def make_corpus(fn='goldenglobes.json'):
     """Make an nltk Text object from a file of tweets"""
@@ -81,6 +69,18 @@ def premade_corpus(fn='goldenglobes.pkl'):
     """Load a premade corpus (faster than remaking it)"""
     with open(fn, 'r') as f:
         return pickle.load(f)
+
+def winner(corpus):
+    from nltk import FreqDist
+    fdist = FreqDist(corpus)
+    maxm = 0
+    winner = ""
+
+    for i in range(len(bestMC)):
+      if fdist[bestMC[i]] > maxm:
+        maxm = fdist[bestMC[i]]
+        winner = bestMC[i]
+    print winner 
 
 def main():
     """Make the premade corpus and serialize"""
