@@ -6,7 +6,7 @@ class Award(object):
         self.nominees = noms
         self.winner = None
         
-    def __str__(self):
+    def __repr__(self):
         return 'Award: Name=%s, Winner=%s' % (self.name, self.winner)
 
     def find_winner(self, fdist):
