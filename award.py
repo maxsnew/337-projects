@@ -1,5 +1,12 @@
 from nominee import Nominee
 
+# Award names have components, Motion Picture or Series
+# actor/actrees
+# 
+class AwardName(object):
+    def __init__(self, comps):
+        self.components = comps
+        
 class Award(object):
     def __init__(self, name, noms):
         self.name = name
@@ -7,10 +14,21 @@ class Award(object):
         self.winner = None
         
     def __repr__(self):
-        return 'Award: Name=%s, Winner=%s' % (self.name, self.winner)
+        return 'Award: Name=%s' % (self.name)
 
-    def find_winner(self, fdist):
+    def find_winner(self, tweets, fdist):
         """Find the winner of an award"""
+
+        relevant = [ 
+            t 
+            for t in tweets
+            if all([
+                comp in t.rawtext
+                for comp in self.name.components
+            ])
+            if t.is_win()
+        ]
+        # First, find the best words in this 
         if not (self.winner is None):
             return self.winner
         maxm = None
@@ -25,47 +43,50 @@ class Award(object):
         self.winner = winner
         return winner
 
+    def find_presenter(self, tweets, fdist):
+        """Find the presenter of an award"""
+        return None
 
 # hard-coded, need to scrape!
 awards = [ 
     Award(a_name, [Nominee(n_name) for n_name in ns])
     for (a_name, ns) in 
-    [(u'Best Motion Picture Drama',
+    [(AwardName(['Motion Picture', 'Drama']),
       ['Argo',
        'Django Unchained',
        'Life of Pi',
        'Lincoln',
        'Zero']),
-     (u'Best Motion Picture Musical or Comedy', 
+     (AwardName(['Motion Picture', 'Musical', 'Comedy']), 
       ['Les Miserables', 
        'The Best Exotic Marigold Hotel',
        'Moonrise Kingdom',
        'Salmon Fishing in the Yemen',
        'Silver Linings Playbook']),
-     (u'Best Actor in a Motion Picture Drama',
+     (AwardName(['Actor', 'Motion Picture' 'Drama']),
       ['Daniel Day-Lewis',
        'Richard Gere',
        'John Hawkes',
        'Joaquin Phoenix',
        'Denzel Washington']),
-     (u'Best Actress in a Motion Picture Drama',
+      (AwardName(['Actress', 'Motion Picture', 'Drama']),
       ['Jessica Chastain',
        'Marion Cotillard', 
        'Helen Mirren', 
        'Naomi Watts',
-       'Rachel Weisz']),
-     (u'Best Actor in a Motion Picture Musical or Comedy',
-      ['Hugh Jackman',
-       'Jack Black',
-       'Bradley Copper',
-       'Ewan McGregor',
-       'Bill Murray']),
-     (u'Best Actress in a Motion Picture Musical or Comedy',
-      ['Jennifer Lawrence',
-       'Emily Blunt',
-       'Judi Dench',
-       'Maggie Smith',
-       'Meryl Streep'] )
+       'Rachel Weisz'])
+     # (u'Best Actor in a Motion Picture Musical or Comedy',
+     #  ['Hugh Jackman',
+     #   'Jack Black',
+     #   'Bradley Copper',
+     #   'Ewan McGregor',
+     #   'Bill Murray']),
+     # (u'Best Actress in a Motion Picture Musical or Comedy',
+     #  ['Jennifer Lawrence',
+     #   'Emily Blunt',
+     #   'Judi Dench',
+     #   'Maggie Smith',
+     #   'Meryl Streep'] )
      # laziness
      # u'Best Actress in a Motion Picture Musical or Comedy',
      # u'Best Actress in a Television Comedy Series',

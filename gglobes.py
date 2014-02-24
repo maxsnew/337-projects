@@ -11,9 +11,9 @@ def main():
     """Make the premade corpus, fdist and serialize"""
     runner = Runner(awards)
     runner.write()
-    winners = runner.winners()
-    for w in winners:
-        print w
+    # winners = runner.winners()
+    # for w in winners:
+    #     print w
     return
 
 if __name__ == '__main__':
