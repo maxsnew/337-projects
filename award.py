@@ -1,5 +1,5 @@
 from nominee import Nominee
-
+from tweet   import Tweet
 # Award names have components, Motion Picture or Series
 # actor/actrees
 # 
@@ -19,15 +19,21 @@ class Award(object):
     def __repr__(self):
         return 'Award: Name=%s' % (self.name)
 
-    def find_winner(self, tweets):
-        """Find the winner of an award"""
-        relevant = [ 
-            t 
+    def filter_tweets(self, tweets):
+        return [
+            t
             for t in tweets
             if all([
                 comp in t.rawtext
                 for comp in self.name.components
-            ])
+            ])            
+        ]
+        
+    def find_winner(self, tweets):
+        """Find the winner of an award"""
+        relevant = [ 
+            t 
+            for t in self.filter_tweets(tweets)
             if t.is_win()
         ]
         maxm = None
@@ -46,7 +52,16 @@ class Award(object):
 
     def find_presenter(self, tweets):
         """Find the presenter of an award"""
-        return None
+        relevant = [
+            t for t in self.filter_tweets(tweets)
+            if t.has_tok('pres') # lancaster stems presenter to pres
+        ]
+        common =  Tweet.common_names(relevant)
+        filtered = [
+            cand for cand in common
+            if not ('Best' in cand) and 'Golden Globes' != cand
+        ]
+        return filtered[:3]
 
 # hard-coded, need to scrape!
 awards = [ 

@@ -38,14 +38,10 @@ class Runner(object):
             t for t in self.tweets
             if 'hosting' in t.rawtext
         ]
-
-        txt = ' '.join([t.rawtext for t in relevant])
-        fd = nltk.FreqDist(re.findall('[A-Z][a-z]+ [A-Z][a-z]+', txt))
-        
-        return (fd.keys()[:5])
+        return Tweet.common_names(relevant)[:5]
         
     def presenters(self):
-        """Return a map of award -> presenter"""
+        """Return a map of award -> presenter candidates"""
         return {
             award: award.find_presenter(self.tweets)
             for award in self.awards
@@ -87,14 +83,26 @@ if __name__ == '__main__':
     for host in hosts:
         print host
 
-    print 'Awards'
-    for (award, winner) in r.winners().iteritems():
+    print 'AWARDS'
+    winners = r.winners()
+    presenters = r.presenters()
+    for award in r.awards:
+        winner = winners[award]
+        presenter_cands = presenters[award]
+        print '********'
         print award
         print 'Nominees'        
         for nom in award.nominees:
             print nom
 
+        print
+        if len(presenter_cands) == 0:
+            print 'No presenter candidates found'
+        else:
+            print 'Presenter candidates:'
+            for pres in presenter_cands:
+                print pres
+        print
         print 'Winner:'
         print winner
-    
-    
+        print '********'

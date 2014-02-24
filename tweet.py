@@ -1,5 +1,6 @@
 import json
 import nltk
+import re
 
 # Lancaster puts 'winning', 'winner', 'wins' all under 'win'
 stemmer = nltk.LancasterStemmer()
@@ -25,3 +26,9 @@ class Tweet(object):
         
     def __repr__(self):
         return 'Tweet: Text: %s...' % (self.rawtext.encode('utf-8'))
+
+    @staticmethod
+    def common_names(tweets):
+        txt = ' '.join([t.rawtext for t in tweets])
+        fd = nltk.FreqDist(re.findall('[A-Z][a-z]+ [A-Z][a-z]+', txt))
+        return (fd.keys())
