@@ -33,7 +33,12 @@ class Runner(object):
         
     def hosts(self):
         """To find hosts, we should just look for tweets that have the word 'host' in them and look for proper nouns"""
-        return None
+        relevant = [
+            t for t in self.tweets
+            if t.has_tok(host)
+        ]
+        
+        return relevant
         
     def presenters(self):
         """Return a map of award -> presenter"""
