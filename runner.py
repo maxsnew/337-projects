@@ -1,6 +1,7 @@
 import cPickle as pickle
 import json
 import nltk
+import re
 
 from tweet import Tweet
 
@@ -39,9 +40,9 @@ class Runner(object):
         ]
 
         txt = ' '.join([t.rawtext for t in relevant])
-        fd = nltk.FreqDist(re.findall('[A-Z][a-z]+ [A-Z][a-z]+', texts))
+        fd = nltk.FreqDist(re.findall('[A-Z][a-z]+ [A-Z][a-z]+', txt))
         
-        return (fd.keys()[:5]
+        return (fd.keys()[:5])
         
     def presenters(self):
         """Return a map of award -> presenter"""
@@ -51,8 +52,11 @@ class Runner(object):
         }
 
     def nominees(self):
-        """Yeah, right"""
-        return None
+        """Hard coded :/"""
+        return {
+            award: award.nominees
+            for award in self.awards
+        }
         
     @staticmethod
     def read(fn = 'runner.pkl'):
@@ -75,3 +79,22 @@ class Runner(object):
         with open(fn, 'r') as f:
             tweets = [ Tweet(l) for l in f ]
         return tweets
+
+if __name__ == '__main__':
+    r = Runner.read()
+    hosts = r.hosts()
+    print 'Top candidates for host:'
+    for host in hosts:
+        print host
+
+    print 'Awards'
+    for (award, winner) in r.winners().iteritems():
+        print award
+        print 'Nominees'        
+        for nom in award.nominees:
+            print nom
+
+        print 'Winner:'
+        print winner
+    
+    
