@@ -15,10 +15,6 @@ And r has everything you need! r.corpus is the corpus, r.fdist the frequency dis
 class Runner(object):
     def __init__(self, awards, fn='goldenglobes.json'):
         self.tweets = Runner.read_tweets(fn)
-        # corpus = nltk.Text(
-        #     [ word for t in self.tweets for word in t.text ]
-        #     , 'Golden Globe Tweets')
-        # self.fdist = nltk.FreqDist(corpus)
         self.awards = awards
 
     def write(self, fn='runner.pkl'):
@@ -53,6 +49,22 @@ class Runner(object):
             award: award.nominees
             for award in self.awards
         }
+
+    def dressed(self):
+        """Most talked about their dress"""
+        relevant = [
+            t for t in self.tweets
+            if t.has_tok('dress')            
+        ]
+        return Tweet.common_names(relevant)[:5]
+
+    def funny(self):
+        """Most talked about for being funny"""
+        relevant = [
+            t for t in self.tweets
+            if t.has_tok('funny')
+        ]
+        return Tweet.common_names(relevant)[:5]
         
     @staticmethod
     def read(fn = 'runner.pkl'):
@@ -79,10 +91,20 @@ class Runner(object):
 if __name__ == '__main__':
     r = Runner.read()
     hosts = r.hosts()
-    print 'Top candidates for host:'
+    print 'Most likely hosts:'
     for host in hosts:
         print host
 
+    print 
+    print 'Most talked about dresses'
+    for dressed in r.dressed():
+        print dressed
+    print
+    print 'Funniest!'
+    for funny in r.funny():
+        print funny
+    print
+        
     print 'AWARDS'
     winners = r.winners()
     presenters = r.presenters()

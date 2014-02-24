@@ -9,11 +9,9 @@ class Tweet(object):
     def __init__(self, s):
         """Create a tweet from a json string"""
         dat = json.loads(s)
-        self.raw  = dat
         self.rawtext = dat['text']
-        self.text = nltk.word_tokenize(dat['text'])
-        self.stemmed = [stemmer.stem(tok) for tok in self.text]
-#         self.pos = nltk.pos_tag(text)
+        text = nltk.word_tokenize(dat['text'])
+        self.stemmed = [stemmer.stem(tok) for tok in text]
 
     def is_win(self):
         return any([
@@ -31,4 +29,8 @@ class Tweet(object):
     def common_names(tweets):
         txt = ' '.join([t.rawtext for t in tweets])
         fd = nltk.FreqDist(re.findall('[A-Z][a-z]+ [A-Z][a-z]+', txt))
-        return (fd.keys())
+        names = [
+            name for name in fd.keys()
+            if name != 'Golden Globes' and not ('Best' in name)
+        ]
+        return names
