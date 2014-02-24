@@ -14,10 +14,10 @@ And r has everything you need! r.corpus is the corpus, r.fdist the frequency dis
 class Runner(object):
     def __init__(self, awards, fn='goldenglobes.json'):
         self.tweets = Runner.read_tweets(fn)
-        corpus = nltk.Text(
-            [ word for t in self.tweets for word in t.text ]
-            , 'Golden Globe Tweets')
-        self.fdist = nltk.FreqDist(corpus)
+        # corpus = nltk.Text(
+        #     [ word for t in self.tweets for word in t.text ]
+        #     , 'Golden Globe Tweets')
+        # self.fdist = nltk.FreqDist(corpus)
         self.awards = awards
 
     def write(self, fn='runner.pkl'):
@@ -27,7 +27,7 @@ class Runner(object):
     def winners(self):
         """Return a map of award -> winner"""
         return { 
-            award: award.find_winner(self.tweets, self.fdist)
+            award: award.find_winner(self.tweets)
             for award in self.awards
         }
         
@@ -38,7 +38,7 @@ class Runner(object):
     def presenters(self):
         """Return a map of award -> presenter"""
         return {
-            award: award.find_presenter(self.tweets, self.fdist)
+            award: award.find_presenter(self.tweets)
             for award in self.awards
         }
 

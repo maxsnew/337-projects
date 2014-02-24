@@ -6,6 +6,9 @@ from nominee import Nominee
 class AwardName(object):
     def __init__(self, comps):
         self.components = comps
+
+    def __repr__(self):
+        return ' '.join(['Best'] + self.components)
         
 class Award(object):
     def __init__(self, name, noms):
@@ -16,9 +19,8 @@ class Award(object):
     def __repr__(self):
         return 'Award: Name=%s' % (self.name)
 
-    def find_winner(self, tweets, fdist):
+    def find_winner(self, tweets):
         """Find the winner of an award"""
-
         relevant = [ 
             t 
             for t in tweets
@@ -29,21 +31,21 @@ class Award(object):
             if t.is_win()
         ]
         # First, find the best words in this 
-        if not (self.winner is None):
-            return self.winner
         maxm = None
         winner = None
 
         for nom in self.nominees:
-            curDist = fdist[nom.short_name(fdist)]
-            if winner is None or curDist > maxm:
-                maxm = curDist
+            curCount = len([
+                t for t in relevant if nom.name in t.rawtext
+            ])
+            if maxm is None or curCount > maxm:
+                maxm = curCount
                 winner = nom
 
         self.winner = winner
         return winner
 
-    def find_presenter(self, tweets, fdist):
+    def find_presenter(self, tweets):
         """Find the presenter of an award"""
         return None
 
@@ -52,41 +54,45 @@ awards = [
     Award(a_name, [Nominee(n_name) for n_name in ns])
     for (a_name, ns) in 
     [(AwardName(['Motion Picture', 'Drama']),
-      ['Argo',
-       'Django Unchained',
+      ['Django Unchained',
+       'Zero Dark Thirty',
+       'Argo',
        'Life of Pi',
-       'Lincoln',
-       'Zero']),
+       'Lincoln'
+       ]),
      (AwardName(['Motion Picture', 'Musical', 'Comedy']), 
       ['Les Miserables', 
        'The Best Exotic Marigold Hotel',
        'Moonrise Kingdom',
        'Salmon Fishing in the Yemen',
        'Silver Linings Playbook']),
-     (AwardName(['Actor', 'Motion Picture' 'Drama']),
-      ['Daniel Day-Lewis',
-       'Richard Gere',
+     (AwardName(['Actor', 'Motion Picture', 'Drama']),
+      ['Joaquin Phoenix',
        'John Hawkes',
-       'Joaquin Phoenix',
+       'Daniel Day-Lewis',
+       'Richard Gere',
        'Denzel Washington']),
       (AwardName(['Actress', 'Motion Picture', 'Drama']),
-      ['Jessica Chastain',
-       'Marion Cotillard', 
-       'Helen Mirren', 
-       'Naomi Watts',
-       'Rachel Weisz'])
-     # (u'Best Actor in a Motion Picture Musical or Comedy',
-     #  ['Hugh Jackman',
-     #   'Jack Black',
-     #   'Bradley Copper',
-     #   'Ewan McGregor',
-     #   'Bill Murray']),
-     # (u'Best Actress in a Motion Picture Musical or Comedy',
-     #  ['Jennifer Lawrence',
-     #   'Emily Blunt',
-     #   'Judi Dench',
-     #   'Maggie Smith',
-     #   'Meryl Streep'] )
+       ['Marion Cotillard', 
+        'Helen Mirren', 
+        'Jessica Chastain',
+        'Naomi Watts',
+        'Rachel Weisz']),
+     (AwardName(['Actor',
+                 'Motion Picture',
+                 'Musical',
+                 'Comedy']),
+      ['Hugh Jackman',
+       'Jack Black',
+       'Bradley Copper',
+       'Ewan McGregor',
+       'Bill Murray']),
+     (AwardName(['Actress', 'Motion Picture', 'Musical', 'Comedy']),
+      ['Jennifer Lawrence',
+       'Emily Blunt',
+       'Judi Dench',
+       'Maggie Smith',
+       'Meryl Streep'])
      # laziness
      # u'Best Actress in a Motion Picture Musical or Comedy',
      # u'Best Actress in a Television Comedy Series',
