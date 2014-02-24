@@ -32,13 +32,16 @@ class Runner(object):
         }
         
     def hosts(self):
-        """To find hosts, we should just look for tweets that have the word 'host' in them and look for proper nouns"""
+        """Returns top 5 candidates for host"""
         relevant = [
             t for t in self.tweets
-            if t.has_tok(host)
+            if 'hosting' in t.rawtext
         ]
+
+        txt = ' '.join([t.rawtext for t in relevant])
+        fd = nltk.FreqDist(re.findall('[A-Z][a-z]+ [A-Z][a-z]+', texts))
         
-        return relevant
+        return (fd.keys()[:5]
         
     def presenters(self):
         """Return a map of award -> presenter"""
