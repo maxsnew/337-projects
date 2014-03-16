@@ -27,6 +27,6 @@ def extract_recipe(html):
     
 def extract_recipe_name(url):
     """From an allrecipes.com recipe url, extract the name of the recipe"""
-    pieces   = url.split('/')
+    pieces   = [piece.lower() for piece in url.split('/')]
     recipe_i = pieces.index('recipe')
     return pieces[recipe_i+1]
