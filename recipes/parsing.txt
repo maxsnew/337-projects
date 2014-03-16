@@ -13,6 +13,7 @@ Parsing notes
 			- Descriptor (e.g. fresh, extra-virgin)
 			- Preparation (e.g finely chopped)
 		- Tools
+			- Setting
 		- Methods
 			- Primary cooking method
 			- other methods
