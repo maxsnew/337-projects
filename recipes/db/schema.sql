@@ -1,17 +1,9 @@
--- CREATE TABLE foods (
-       -- food_name Text primary key,
-       -- food_group reference
-       -- calories      Real,
-       -- protein       Real,
-       -- fat           Real,
-       -- carbohydrates Real,
-       -- sugars        Real
-       -- )
+CREATE TABLE FoodGroups (
+       GroupName TEXT,
+       GroupId   INTEGER,
 
--- CREATE TABLE FoodGroups (
---        GroupName TEXT,
---        GroupId   INTEGER
--- );
+       PRIMARY KEY (GroupId)
+);
 
 INSERT INTO FoodGroups(GroupId, GroupName) VALUES (0100, 'Dairy and Egg Products');
 INSERT INTO FoodGroups(GroupId, GroupName) VALUES (0200, 'Spices and Herbs');
