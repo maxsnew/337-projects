@@ -1,9 +1,10 @@
 Recipe Transformations Project
 ==============================
 
-Requirements
+Dependencies
 ------------
 python 2.7
-beautifulsoup4 (pip install beautifulsoup4)
-requests       (pip install requests)
+sqlite3
+beautifulsoup4     (pip install beautifulsoup4)
+requests           (pip install requests)
 PyYAML/nltk		   (pip install pyyaml nltk)
