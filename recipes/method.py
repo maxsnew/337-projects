@@ -1,5 +1,6 @@
 import nltk
 import download
+from recipe import Recipe
 
 class Method(object):
 	def __init__(self, primary, helper):

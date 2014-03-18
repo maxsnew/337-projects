@@ -1,5 +1,6 @@
 import nltk
 import download
+from recipe import Recipe
 from ingredient import Ingredient
 from tool import Tool
 from method import Method

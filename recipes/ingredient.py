@@ -1,5 +1,6 @@
 import nltk
 import download
+from recipe import Recipe
 
 class Ingredient(object):
 	def __init__(self, name, quantity, measurement, descriptor, preparation):
