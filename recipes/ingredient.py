@@ -15,9 +15,10 @@ class Ingredient(object):
 		return recipe
 		
 	def parseIngredient(recipe):
-		"""Parse ingredient attribute values from the recipe"""
+		"""Parse ingredient attribute values from the extracted recipe"""
 		self.name = """NLTK parsing here"""
 		self.quantity = """NLTK parsing here"""
 		self.measurement = """NLTK parsing here"""
 		self.descriptor = """NLTK parsing here"""
 		self.preparation = """NLTK parsing here"""
+		return self
