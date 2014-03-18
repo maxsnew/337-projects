@@ -10,19 +10,19 @@ def download_recipe(url):
     return extract_recipe(html)
 
 def extract_recipe(html):
-    """Extract the recipe from the kitchen view of an allrecipes recipe,
+    """Extract the recipe from an allrecipes recipe webpage,
        returns a pair of lists, ingredients and directions"""
     soup = BeautifulSoup(html)
-    directions = []
-    # directions = [
-    #     div.get_text()
-    #     for div in soup.find(id='directions-wrapper')
-    #                    .findAll('div', {'class': 'direction'})
-    # ]
+    directions = [
+        d.get_text()
+        for d in soup.find(   'div',  {'class': 'directions'})
+                     .findAll('span', {'class':'plaincharacterwrap'})
+    ]
     ingreds = extract_ingredients(soup)
     return (ingreds, directions)
 
 def extract_ingredients(soup):
+    """Extracts the ingredients from a recipe into a map of amount and name. Amount may be None"""
     ingreds = [
         make_ingredient(li)
         for ul in soup.findAll('ul', {'class', 'ingredient-wrap'})
