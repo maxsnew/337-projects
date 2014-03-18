@@ -8,6 +8,6 @@ CREATE TABLE Foods (
        carbohydrates Real,
        sugars        Real,
 
-       PRIMARY KEY (FoodName),
+       PRIMARY KEY (FoodId),
        FOREIGN KEY (FoodGroupId) REFERENCES FoodGroups(GroupId)
 );

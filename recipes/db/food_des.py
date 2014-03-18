@@ -9,8 +9,9 @@ def main():
         for l in f:
             pieces = l.split('^')
             fid = strip(pieces[0])
+            groupid = strip(pieces[1])
             name = strip(pieces[2])
-            c.execute('INSERT INTO FoodName VALUES (?, ?)', (fid, name))
+            c.execute('INSERT INTO FoodName VALUES (?, ?, ?)', (fid, groupid, name))
 
     conn.commit()
 
