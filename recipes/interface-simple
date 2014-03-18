@@ -1,0 +1,17 @@
+#first draft of interface, extremely simple, I'll touch it up
+#vegetarian, cuisine, and healthy are filler names for the programs Max is going to write, recipe is a filler name
+#for the database we'll be making
+
+print('What would you like to do with your recipe?')
+print('1 = Make Vegetarian/Vegan')
+print('2 = Change cuising style')
+print('3 = Find healthier alternatives')
+transformation = input()
+if(transformation == 1):
+    vegetarian(recipe)
+elif(transformation == 2):
+    cuisine(recipe)
+elif(transformation == 3):
+    healthy(recipe)
+else:
+    print('Please pick a number corresponding to one of the available options')
