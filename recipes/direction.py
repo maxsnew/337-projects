@@ -7,9 +7,20 @@ from method import Method
 class Direction(object):
 	def __init__(self, time, ingredients, tools, methods):
 		self.time = time
-		self.ingredients = 
-		self.tools = 
-		self.methods = 
+		self.ingredients = ingredients
+		self.tools = tools
+		self.methods = methods
+		
+	def getRecipe(url):
+		"""Obtain downloaded recipe"""
+		recipe = download.download_recipe(url)
+		return recipe
 	
-	def parseD():
-		"""Parse a direction/step from the extracted recipe"""
+	def parseDirection(recipe):
+		"""Parse direction/step attributes from the extracted recipe and from other classes"""
+		self.time = """NLTK parsing here"""
+		"""These next three come from pre-established classes"""
+		self.ingredients = Ingredient.parseIngredient(recipe)
+		self.tools = Tool.parseTool(recipe)
+		self.methods = Method.parseMethod(recipe)
+		return self
