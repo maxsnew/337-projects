@@ -2,23 +2,22 @@ import nltk
 import download
 
 class Ingredient(object):
-	def __init__(self, name, ingredients):
-		
-	def __init__(self, url):		
-		self.recipe = download.download_recipe(url)
+	def __init__(self, name, quantity, measurement, descriptor, preparation):
+		self.name = name
+		self.quantity = 0
+		self.measurement = measurement
+		self.descriptor = descriptor
+		self.preparation = preparation
 	
-	def getIngredient(self):
-		"""Examine individual ingredients in recipe"""
-		"""store just ingredients/info in a list, then iterate through list of ingredients"""
-		self.recipe
-		return i
-	def parseI():
-		"""Parse an ingredient and related attributes from the the ingredient list"""
+	def getRecipe(url):
+		"""Obtain downloaded recipe"""
+		recipe = download.download_recipe(url)
+		return recipe
 		
-		
-""" you should just make a class for each of those things
-and then make a function that parses something into an object of that class
-so make an Ingredient class
-in a file ingredient.py
-and in that file make a parse function
-that returns an Ingredient"""
+	def parseIngredient(recipe):
+		"""Parse ingredient attribute values from the recipe"""
+		self.name = """NLTK parsing here"""
+		self.quantity = """NLTK parsing here"""
+		self.measurement = """NLTK parsing here"""
+		self.descriptor = """NLTK parsing here"""
+		self.preparation = """NLTK parsing here"""
