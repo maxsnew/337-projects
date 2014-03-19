@@ -9,16 +9,14 @@ class Ingredient(object):
 		self.descriptor = descriptor
 		self.preparation = preparation
 	
-	def parse(raw_ingred):
-		
-	def parseIngredient(recipe):
+	def parse(raw_ingred): """would this take raw_ingred or our new list created in recipe.py?"""
 		"""Parse ingredient attribute values from the extracted recipe"""
-		self.name = """NLTK parsing here"""
-		self.quantity = """NLTK parsing here"""
-		self.measurement = """NLTK parsing here"""
-		self.descriptor = """NLTK parsing here"""
-		self.preparation = """NLTK parsing here"""
-		return self
+		name = parseIngredientName(raw_ingred)
+		quantity = parseQuantity(raw_ingred)
+		measurement = parseMeasurement(raw_ingred)
+		descriptor = parseDescriptor(raw_ingred)
+		preparation = parsePreparation(raw_ingred)
+		return Ingredient(name, quantity, measurement, descriptor, preparation)
 
 	def makeVeggie(self):
                 """Return a vegetarian substitue for this ingredient"""
@@ -35,3 +33,13 @@ class Ingredient(object):
 				# ice cream --> cool whip
 		newIngredient = self
 		return newIngredient
+
+def parseIngredientName(raw_ingred):
+
+def parseQuantity(raw_ingred):
+
+def parseMeasurement(raw_ingred):
+
+def parseDescriptor(raw_ingred):
+
+def parsePreparation(raw_ingred):
