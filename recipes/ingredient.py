@@ -45,3 +45,4 @@ class Ingredient(object):
 # def parseDescriptor(raw_ingred):
 
 # def parsePreparation(raw_ingred):
+
