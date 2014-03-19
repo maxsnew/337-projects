@@ -2,7 +2,8 @@
 #for the database we'll be making
 def recipe_interface():
     #start by getting the url for the recipe
-    recipe = input('What recipe would you like to work on today?')
+    y = input('What recipe would you like to work on today?')
+    recipe = download_recipe(y)
     parsed = parse(recipe)
     #print out the original recipe
     print('Here is the original recipe' parsed)
