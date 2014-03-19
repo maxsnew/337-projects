@@ -5,7 +5,7 @@ from method import Method
 from direction import Direction
 
 class Recipe(object):
-<<<<<<< HEAD
+
 	def __init__(self, url):
 		self.raw = download_recipe(url)
 		self.name = extract_name(self.raw)
@@ -32,18 +32,17 @@ class Recipe(object):
 	def displayIngred(self):
 		for ingred in self.ingredients:
 			ingred.showIngredient()
-=======
-	def __init__(self, name, ingredients, tools, methods, directions):
-		self.name = name
-		self.ingredients = ingredients
-		self.tools = tools
-		self.methods = methods
-		self.directions = directions
+			
+#	def __init__(self, name, ingredients, tools, methods, directions):
+#		self.name = name
+#		self.ingredients = ingredients
+#		self.tools = tools
+#		self.methods = methods
+#		self.directions = directions
 
         def pretty_recipe(self):
                 """Returns a string that is a human-readable recipe"""
                 raise Error('Unimplemented: Donald or David')
->>>>>>> af2405dbe5bd8bea8fd516a785d0a14d5b33a823
 
 	def veggitize(self):
 		for oldIngredient in self.ingredients:
