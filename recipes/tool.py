@@ -5,12 +5,10 @@ class Tool(object):
 	def __init__(self, setting):
 		self.setting = setting
 	
-	def getRecipe(url):
-		"""Obtain downloaded recipe"""
-		recipe = download.download_recipe(url)
-		return recipe
-	
-	def parseTool(recipe):
+	def parse(raw_directions):
 		"""Parse tool attribute values from the extracted recipe"""
-		self.setting = """NLTK parsing here"""
-		return self
+		setting = parseSetting(raw_directions)
+		return Tool(setting)
+
+def parseSetting(raw_directions):
+	"""Not sure how to do this one, maybe look for hard-coded verbs like "set, preheat, heat, etc."""

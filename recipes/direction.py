@@ -1,6 +1,5 @@
 import nltk
 import download
-from recipe import Recipe
 from ingredient import Ingredient
 from tool import Tool
 from method import Method
@@ -11,23 +10,20 @@ class Direction(object):
 		self.ingredients = ingredients
 		self.tools = tools
 		self.methods = methods
-		
-	def getRecipe(url):
-		"""Obtain downloaded recipe"""
-		recipe = download.download_recipe(url)
-		return recipe
 	
-	def parseDirection(recipe):
+	def parse(raw_directions):
 		"""Parse direction/step attributes from the extracted recipe and from other classes"""
-		self.time = """NLTK parsing here"""
-		"""These next three come from pre-established classes"""
-		self.ingredients = Ingredient.parseIngredient(recipe)
-		self.tools = Tool.parseTool(recipe)
-		self.methods = Method.parseMethod(recipe)
-		return self
+		time = parseTime(raw_directions)
+		"""These next three come from pre-established classes, not sure if correct"""
+		ingredients = Ingredient.parseIngredient(raw_ingredients)
+		tools = Tool.parseTool(raw_directions)
+		methods = Method.parseMethod(raw_directions)
+		return Direction(time, ingredients, tools, methods)
 
 	def updateIngredient(self, old, new):
 		for ingredient in self.ingredients
 			if ingredient == old:
 				ingredient = new
 		return ingredient
+
+def parseTime(raw_directions):

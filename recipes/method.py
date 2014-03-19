@@ -6,12 +6,15 @@ class Method(object):
 		self.primary = primary
 		self.helper = helper
 	
-	def parseMethod(recipe):
+	def parse(raw_directions):
 		"""Parse cooking method attributes from the extracted recipe"""
 		""" Use NLTK to find verbs """
-		
-		"""Primary will be the most often used verb"""
-		self.primary = """NLTK parsing here"""
-		"""Helper will be the second most used verb"""
-		self.helper = """NLTK parsing here"""
-		return self
+		primary = parsePrimary(raw_directions)
+		helper = parseHelper(raw_directions)
+		return Method(primary, helper)
+
+def parsePrimary(raw_directions):
+	"""Primary will be the most often used verb"""
+
+def parseHelper(raw_directions): 
+	"""Helper will be the second most used verb"""
