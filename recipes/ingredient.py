@@ -40,6 +40,6 @@ def parseQuantity(raw_ingred):
 
 def parseMeasurement(raw_ingred):
 
-def parseDescriptor(raw_ingred):
+def parseDescriptor(raw_ingred): """optional"""
 
-def parsePreparation(raw_ingred):
+def parsePreparation(raw_ingred): """optional"""
