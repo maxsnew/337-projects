@@ -1,5 +1,4 @@
 import nltk
-import download
 from ingredient import Ingredient
 from tool import Tool
 from method import Method
@@ -12,12 +11,38 @@ class Recipe(object):
 		self.tools = tools
 		self.methods = methods
 		self.directions = directions
-	
-	def getRecipe(url):
-		"""Obtain downloaded recipe"""
-		raw_recipe = download.download_recipe(url)
-		return Recipe.parse(raw_recipe)
-		
+
+        def pretty_recipe(self):
+                """Returns a string that is a human-readable recipe"""
+                raise Error('Unimplemented: Donald or David')
+
+	def veggitize(self):
+		for oldIngredient in self.ingredients:
+			newIngredient = oldIngredient.makeVeggie()
+			newDirections = [
+                                direction.updateIngredients(oldIngredient, newIngredient)
+				for direction in self.directions
+                                
+			]
+			self.directions = newDirections
+
+	def makeHealthy(self):
+		for oldIngredient in self.ingredients:
+			newIngredient = oldIngredient.healthy()
+			newDirections = [
+                                direction.updateIngredients(oldIngredient, newIngredient)
+                                for direction in self.directions
+                                
+			]
+			self.directions = newDirections
+			newMethods = [
+                                method.healthy()
+                                for method in self.methods
+
+			]
+			self.methods = newMethods
+
+        @staticmethod
 	def parse(raw_recipe):
 		"""parsing recipe download into recipe structure"""
 		(raw_name, raw_ingredients, raw_directions) = raw_recipe
@@ -28,29 +53,9 @@ class Recipe(object):
 		directions = parseDirections(raw_directions)		
 		return Recipe(name, ingredients, tools, methods, directions)
 
-	def veggitize(self):
-		for oldIngredient in self.ingredients:
-			newIngredient = oldIngredient.makeVeggie()
-			newDirections = [
-				for direction in self.directions:
-					direction.updateIngredients(oldIngredient, newIngredient)
-			]
-			self.directions = newDirections
 
-	def makeHealthy(self):
-		for oldIngredient in self.ingredients:
-			newIngredient = oldIngredient.healthy()
-			newDirections = [
-				for direction in self.directions:
-					direction.updateIngredients(oldIngredient, newIngredient)
-			]
-			self.directions = newDirections
-			newMethods = [
-				for method in self.methods
-					newMethod = method.healthy()
-			]
-			self.methods = newMethods
 
+                        
 def parseRecipeName(raw_name):
 	"""Parse recipe name from the extracted recipe"""
 	name = raw_name
@@ -71,6 +76,7 @@ def parseTools(raw_directions):
 	return [Tools.parse(i) for i in raw_ingredients]
 
 def parseDirections(raw_directions):
-	"""Parse directions from the extracted directions""
-	return [Direction.parse(i) for i in raw_directions]
+	"""Parse directions from the extracted directions
+	return [Direction.parse(i) for i in raw_directions]"""
+        raise Error('Leesha')
 	
