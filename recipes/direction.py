@@ -25,3 +25,9 @@ class Direction(object):
 		self.tools = Tool.parseTool(recipe)
 		self.methods = Method.parseMethod(recipe)
 		return self
+
+	def updateIngredient(self, old, new):
+		for ingredient in self.ingredients
+			if ingredient == old:
+				ingredient = new
+		return ingredient

@@ -23,3 +23,11 @@ class Ingredient(object):
 		self.descriptor = """NLTK parsing here"""
 		self.preparation = """NLTK parsing here"""
 		return self
+
+	def makeVeggie(self):
+		newIngredient = self
+		for item in veggieArray:
+			if self.name == item:
+				return newIngredient
+			else 
+		return newIngredient
