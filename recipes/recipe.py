@@ -15,17 +15,14 @@ class Recipe(object):
 	
 	def getRecipe(url):
 		"""Obtain downloaded recipe"""
-		recipe = download.download_recipe(url)
-		return recipe
+		raw_recipe = download.download_recipe(url)
+		return Recipe.parse(raw_recipe)
 		
-	def parseIngredient(recipe):
-		"""Parse recipe attribute values from the extracted recipe"""
-		self.name = """NLTK parsing here"""
-		self.ingredients = """NLTK parsing here"""
-		self.tools = """NLTK parsing here"""
-		self.methods = """NLTK parsing here"""
-		self.directions = """NLTK parsing here"""
-		return self
+	def parse(raw_recipe):
+		(raw_name, raw_ingredients, raw_directions) = raw_recipe
+		ingredients = parseIngredients(raw_ingredients) """parsing recipe download"""
+		""" ... """
+		return Recipe(name, ingredients, tools, methods, directions)
 
 	def veggitize(self):
 		for oldIngredient in self.ingredients:
@@ -50,5 +47,24 @@ class Recipe(object):
 			]
 			self.methods = newMethods
 
+def parseRecipeName(raw_name):
+	"""Parse recipe name from the extracted recipe"""
+	name = raw_name
+	return name
+		
+def parseIngredients(raw_ingredients):
+	"""Parse ingredients from the extracted recipe"""	
+	return [Ingredient.parse(i) for i in raw_ingredients]
+	
+def getMethods(recipe):
+	"""Parse methods from the extracted recipe by searching for verbs"""
+	self.methods = """NLTK parsing here"""
+	
+def getTools(recipe):
+	"""Not sure what to do, so I'm hard coding a list of tools in tools.py"""
+	self.tools = """NLTK parsing here"""
 
+def getDirections(raw_directions):
+	"""Parse directions from the extracted recipe"""
+	return [Direction.parse(i) for i in raw_directions]
 	
