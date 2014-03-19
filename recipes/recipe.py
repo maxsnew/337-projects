@@ -11,12 +11,29 @@ class Recipe(object):
 	def __init__(self, url):
 		self.raw = download_recipe(url)
 		self.name = extract_name(self.raw)
-		self.ingredients = extract_ingredients(self.raw)
+		self.ingredients = []
 
 	def parseIngredients(self):
-		for item in self.ingredients:
-			newIngredient = Ingredient(item['name'], item['amount'])
-			newIngredient.showIngredient()
+		for item in extract_ingredients(self.raw):
+			current = item['amount']
+			if current == None:
+				newIngredient = Ingredient(item['name'], None, None)
+				newIngredient.showIngredient()
+			else:
+				match = re.search("[a-zA-Z]+", current)
+				if match == None:
+					newIngredient = Ingredient(item['name'], item['amount'], "None")
+					self.ingredients.append(newIngredient)
+					newIngredient.showIngredient()
+					continue
+				else:
+					newIngredient = Ingredient(item['name'], item['amount'], match.group())
+					self.ingredients.append(newIngredient)
+					newIngredient.showIngredient()
+
+	def displayIngred(self):
+		for ingred in self.ingredients:
+			ingred.showIngredient()
 
 
 def download_recipe(url):
