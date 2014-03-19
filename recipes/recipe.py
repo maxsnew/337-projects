@@ -56,11 +56,11 @@ def parseIngredients(raw_ingredients):
 	"""Parse ingredients from the extracted recipe"""	
 	return [Ingredient.parse(i) for i in raw_ingredients]
 	
-def getMethods(recipe):
+def getMethods(raw_directions):
 	"""Parse methods from the extracted recipe by searching for verbs"""
 	self.methods = """NLTK parsing here"""
 	
-def getTools(recipe):
+def getTools(raw_directions):
 	"""Not sure what to do, so I'm hard coding a list of tools in tools.py"""
 	self.tools = """NLTK parsing here"""
 
