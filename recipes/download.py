@@ -13,13 +13,14 @@ def extract_recipe(html):
     """Extract the recipe from an allrecipes recipe webpage,
        returns a pair of lists, ingredients and directions"""
     soup = BeautifulSoup(html)
+    name = extract_name(soup)
     directions = [
         d.get_text()
         for d in soup.find(   'div',  {'class': 'directions'})
                      .findAll('span', {'class':'plaincharacterwrap'})
     ]
     ingreds = extract_ingredients(soup)
-    return (ingreds, directions)
+    return (name, ingreds, directions)
 
 def extract_ingredients(soup):
     """Extracts the ingredients from a recipe into a map of amount and name. Amount may be None"""
@@ -40,3 +41,6 @@ def make_ingredient(li):
         'amount': amount,
         'name'  : name
     }
+
+def extract_name(soup):
+    return soup.find(id='itemTitle').text
