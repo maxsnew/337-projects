@@ -5,7 +5,8 @@ from tool import Tool
 from method import Method
 
 class Direction(object):
-	def __init__(self, time, ingredients, tools, methods):
+	def __init__(self, raw, time, ingredients, tools, methods):
+                self.raw  = raw
 		self.time = time
 		self.ingredients = ingredients
 		self.tools = tools
@@ -18,7 +19,7 @@ class Direction(object):
 		ingredients = Ingredient.parseIngredient(raw_ingredients)
 		tools = Tool.parseTool(raw_directions)
 		methods = Method.parseMethod(raw_directions)
-		return Direction(time, ingredients, tools, methods)
+		return Direction(raw_directions, time, ingredients, tools, methods)
 
 	def updateIngredient(self, old, new):
 		for ingredient in self.ingredients:

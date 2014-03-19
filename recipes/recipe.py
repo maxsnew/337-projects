@@ -76,35 +76,21 @@ class Recipe(object):
 		(raw_name, raw_ingredients, raw_directions) = raw_recipe
 		name = parseRecipeName(raw_name)
 		ingredients = parseIngredients(raw_ingredients)
-		tools = parseTools(raw_directions)
-		methods = parseMethods(raw_directions)
-		directions = parseDirections(raw_directions)		
+		directions = parseDirections(raw_directions)
+
+		tools   = Tool.find_tools(directions)
+		methods = Method.find_methods(directions)
 		return Recipe(name, ingredients, tools, methods, directions)
-
-
-
                         
 def parseRecipeName(raw_name):
 	"""Parse recipe name from the extracted recipe"""
-	name = raw_name
-	return name
+        return raw_name
 		
 def parseIngredients(raw_ingredients):
 	"""Parse ingredients from the extracted ingredients"""	
 	return [Ingredient.parse(i) for i in raw_ingredients]
 	
-def parseMethods(raw_directions):
-	"""Parse methods from the extracted directions by searching for verbs"""
-	"""return [Method.parse(i) for i in raw_directions]"""
-	directions = raw_directions
-	return directions
-	
-def parseTools(raw_directions):
-	"""Parse tools from the extracted directions by hard coding tool list"""
-	return [Tools.parse(i) for i in raw_ingredients]
-
 def parseDirections(raw_directions):
-	"""Parse directions from the extracted directions
-	return [Direction.parse(i) for i in raw_directions]"""
-        raise Error('Leesha')
+	"""Parse directions from the extracted directions"""
+	return [Direction.parse(i) for i in raw_directions]
 	

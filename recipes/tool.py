@@ -4,13 +4,11 @@ import download
 class Tool(object):
 	def __init__(self, name, setting):
 		self.name = name
-		self.setting = setting
 	
-	def parse(raw_directions):
-		"""Parse tool attribute values from the extracted recipe"""
-		name = parseName(raw_directions)
-		setting = parseSetting(raw_directions)
-		return Tool(name, setting)
+        @staticmethod
+        def find_tools(directions):
+                """TODO: actually implement"""
+                return []
 
 # def listTools(raw_directions):
 # 	"""Not sure how to do this one, maybe look at cooking methods and match commonly used cooking verbs with hard coded tool nouns"""
@@ -47,13 +45,3 @@ class Tool(object):
 # 			tools.extend('rolling pin')	
 # 	toolList = set(tools)
 # 	return toolList
-		
-def parseName(raw_directions):
-	tools = listTools(raw_directions)
-	for i in tools:
-		name = 	i
-	return name
-	
-def parseSetting(raw_directions):
-	setting = 'None' """not sure how to pull these, and it's not necessary, just thought it would be cool =( """
-	return setting
