@@ -3,7 +3,7 @@ import re
 import download
 
 class Ingredient(object):
-<<<<<<< HEAD
+
 	def __init__(self, name, quantity, measurement):
 		self.name = name
 		self.quantity = quantity
@@ -23,15 +23,13 @@ class Ingredient(object):
 			print ('{\n\t"name": ' + self.name
 			      + '\n\t"quantity": ' + self.quantity
 			      + '\n\t"measurement": ' + self.measurement + '\n},')
-=======
+
 	def __init__(self, name, quantity, measurement, descriptor, preparation):
 		self.name = name
 		self.quantity = 0
 		self.measurement = measurement
 		self.descriptor = descriptor
 		self.preparation = preparation
->>>>>>> af2405dbe5bd8bea8fd516a785d0a14d5b33a823
-	
 
 	def makeVeggie(self):
                 """Return a vegetarian substitue for this ingredient"""
