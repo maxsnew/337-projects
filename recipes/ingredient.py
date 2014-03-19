@@ -72,15 +72,23 @@ class Ingredient(object):
 
         @staticmethod
         def parse(raw_ingred):
-                """would this take raw_ingred or our new list created in recipe.py?
-		   Parse ingredient attribute values from the extracted recipe"""
-		name = parseIngredientName(raw_ingred)
-		quantity = parseQuantity(raw_ingred)
-		measurement = parseMeasurement(raw_ingred)
-		descriptor = parseDescriptor(raw_ingred)
-		preparation = parsePreparation(raw_ingred)
-		return Ingredient(name, quantity, measurement, descriptor, preparation)
+	    	"""would this take raw_ingred or our new list created in recipe.py?
+			Parse ingredient attribute values from the extracted recipe"""
+			amount = raw_ingred['amount']
+			name = raw_ingred['name']
+			if amount is None:
+				newIngredient = Ingredient(name, None, None)
+				return newIngredient
+			else:
+				match = re.search("[a-zA-Z]+", current)
+				if match == None:
+					newIngredient = Ingredient(name, amount, None)
+				else:
+					measurement = match.group()
+					amount = amount.replace(measurement, '')
+					newIngredient = Ingredient(name, amount, match.group())
 
+			return newIngredient
 def parseIngredientName(raw_ingred):
         raise Exception('Leesha or David')
                         
