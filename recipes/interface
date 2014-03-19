@@ -2,26 +2,30 @@
 def recipe_interface():
     #start by getting the url for the recipe
     y = input('What recipe would you like to work on today?')
-    recipe = download_recipe(y)
-    #print out the original recipe
-    print('Here is the original recipe' recipe)
-    #Then ask what transformation to do
-    while True:
-        print('What would you like to do with your recipe?')
-        print('1 = Make Vegetarian/Vegan')
-        print('2 = Change cuisine style')
-        print('3 = Find healthier alternatives')
-        x = input()
-        if(x == '1'):
-            changed = vegetarian(recipe)
-            break
-        elif(x == '2'):
-            changed = cuisine(recipe)
-            break
-        elif(x == '3'):
-            changed = healthy(recipe)
-            break
-        else:
-            print('Please pick a number corresponding to one of the available options')
-    #Then print the new recipe
-    print('Here's your new recipe!' changed)
+    if(y.find("allrecipes.com/") == -1):
+        print("Please put in a url from allrecipes.com")
+        recipe_interface()
+    else:
+        recipe = download_recipe(y)
+        #print out the original recipe
+        print('Here is the original recipe' recipe)
+        #Then ask what transformation to do
+        while True:
+            print('What would you like to do with your recipe?')
+            print('1 = Make Vegetarian/Vegan')
+            print('2 = Change cuisine style')
+            print('3 = Find healthier alternatives')
+            x = input()
+            if(x == '1'):
+                changed = vegetarian(recipe)
+                break
+            elif(x == '2'):
+                changed = cuisine(recipe)
+                break
+            elif(x == '3'):
+                changed = healthy(recipe)
+                break
+            else:
+                print('Please pick a number corresponding to one of the available options')
+        #Then print the new recipe
+        print('Here's your new recipe!' changed)
