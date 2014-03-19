@@ -12,7 +12,7 @@ def recipe_interface():
     else:
         recipe = Recipe()
         #print out the original recipe
-        print('Here is the original recipe' recipe.getRecipe())
+        print('Here is the original recipe' recipe.getRecipe(y))
         #Then ask what transformation to do
         while True:
             print('What would you like to do with your recipe?')
