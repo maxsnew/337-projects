@@ -1,26 +1,27 @@
-#vegetarian, cuisine, and healthy are filler names for the programs David is going to write, recipe is a filler name
-#for the database we'll be making
+#vegetarian, cuisine, and healthy are filler names for the programs David is going to write
 def recipe_interface():
     #start by getting the url for the recipe
     y = input('What recipe would you like to work on today?')
     recipe = download_recipe(y)
-    parsed = parse(recipe)
     #print out the original recipe
-    print('Here is the original recipe' parsed)
+    print('Here is the original recipe' recipe)
     #Then ask what transformation to do
-    print('What would you like to do with your recipe?')
-    print('1 = Make Vegetarian/Vegan')
-    print('2 = Change cuisine style')
-    print('3 = Find healthier alternatives')
-    x = input()
-    if(x == '1'):
-        changed = vegetarian(parsed)
-    elif(x == '2'):
-        changed = cuisine(parsed)
-    elif(x == '3'):
-        changed = healthy(parsed)
-    else:
-        print('Please pick a number corresponding to one of the available options')
-        recipe_interface()
+    while True:
+        print('What would you like to do with your recipe?')
+        print('1 = Make Vegetarian/Vegan')
+        print('2 = Change cuisine style')
+        print('3 = Find healthier alternatives')
+        x = input()
+        if(x == '1'):
+            changed = vegetarian(recipe)
+            break
+        elif(x == '2'):
+            changed = cuisine(recipe)
+            break
+        elif(x == '3'):
+            changed = healthy(recipe)
+            break
+        else:
+            print('Please pick a number corresponding to one of the available options')
     #Then print the new recipe
     print('Here's your new recipe!' changed)
