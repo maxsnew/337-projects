@@ -25,9 +25,6 @@ class Ingredient(object):
 		return self
 
 	def makeVeggie(self):
+                """Return a vegetarian substitue for this ingredient"""
 		newIngredient = self
-		for item in veggieArray:
-			if self.name == item:
-				return newIngredient
-			else 
 		return newIngredient
