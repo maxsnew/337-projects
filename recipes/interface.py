@@ -13,6 +13,10 @@ def recipe_interface():
             #print out the original recipe
             raw_recipe = download.download_recipe(url)
             recipe     = Recipe.parse(raw_recipe)
+            print([
+                i.serialize()
+                for i in recipe.ingredients
+            ])
             print('Here is the original recipe:')
             print(recipe.pretty_recipe())
 

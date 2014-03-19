@@ -32,27 +32,12 @@ class Ingredient(object):
 			ingred.showIngredient()
 			
 
-	def showIngredient(self):
-		current = self.quantity
-
-		if current == None:
-			print ('{\n\t"name": ' + self.name
-		      	  + '\n\t"quantity": None'
-		      	  + '\n\t"measurement": None' + '\n},')
-		else:
-			match = re.search("[^a-zA-Z]+", current)
-			self.quantity = match.group()
-
-			print ('{\n\t"name": ' + self.name
-			      + '\n\t"quantity": ' + self.quantity
-			      + '\n\t"measurement": ' + self.measurement + '\n},')
-
-	def __init__(self, name, quantity, measurement, descriptor, preparation):
-		self.name = name
-		self.quantity = 0
-		self.measurement = measurement
-		self.descriptor = descriptor
-		self.preparation = preparation
+	def serialize(self):
+		return {
+			'name': self.name,
+			'quantity': self.quantity,
+			'measurement': self.measurement
+		}
 
 	def makeVeggie(self):
                 """Return a vegetarian substitue for this ingredient"""
@@ -70,25 +55,25 @@ class Ingredient(object):
 		newIngredient = self
 		return newIngredient
 
-        @staticmethod
-        def parse(raw_ingred):
-	    	"""would this take raw_ingred or our new list created in recipe.py?
-			Parse ingredient attribute values from the extracted recipe"""
-			amount = raw_ingred['amount']
-			name = raw_ingred['name']
-			if amount is None:
-				newIngredient = Ingredient(name, None, None)
-				return newIngredient
-			else:
-				match = re.search("[a-zA-Z]+", current)
-				if match == None:
-					newIngredient = Ingredient(name, amount, None)
-				else:
-					measurement = match.group()
-					amount = amount.replace(measurement, '')
-					newIngredient = Ingredient(name, amount, match.group())
-
+	@staticmethod
+	def parse(raw_ingred):
+		"""would this take raw_ingred or our new list created in recipe.py?
+		Parse ingredient attribute values from the extracted recipe"""
+		amount = raw_ingred['amount']
+		name = raw_ingred['name']
+		if amount is None:
+			newIngredient = Ingredient(name, None, None)
 			return newIngredient
+		else:
+			match = re.search("[a-zA-Z]+", amount)
+			if match == None:
+				newIngredient = Ingredient(name, amount, None)
+			else:
+				measurement = match.group()
+				amount = amount.replace(measurement, '')
+				newIngredient = Ingredient(name, amount, match.group())
+			
+		return newIngredient
 def parseIngredientName(raw_ingred):
         raise Exception('Leesha or David')
                         
