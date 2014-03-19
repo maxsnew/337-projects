@@ -27,3 +27,4 @@ class Direction(object):
 		return ingredient
 
 def parseTime(raw_directions):
+	"""will work on this later, it's optional to break up directions into a direction objects with attribs like time, etc"""

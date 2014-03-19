@@ -62,7 +62,9 @@ def parseIngredients(raw_ingredients):
 	
 def parseMethods(raw_directions):
 	"""Parse methods from the extracted directions by searching for verbs"""
-	return [Method.parse(i) for i in raw_directions]
+	"""return [Method.parse(i) for i in raw_directions]"""
+	directions = raw_directions
+	return directions
 	
 def parseTools(raw_directions):
 	"""Parse tools from the extracted directions by hard coding tool list"""
