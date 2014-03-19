@@ -26,3 +26,14 @@ class Recipe(object):
 		self.methods = """NLTK parsing here"""
 		self.directions = """NLTK parsing here"""
 		return self
+
+	def veggitize(self):
+		for oldIngredient in self.ingredients:
+			newIngredient = oldIngredient.makeVeggie()
+			newDirections = [
+				for direction in self.directions:
+					direction.updateIngredients(oldIngredient, newIngredient)
+			]
+			self.directions = newDirections
+
+	
