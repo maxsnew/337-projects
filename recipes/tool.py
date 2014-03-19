@@ -1,6 +1,5 @@
 import nltk
 import download
-from recipe import Recipe
 
 class Tool(object):
 	def __init__(self, setting):
