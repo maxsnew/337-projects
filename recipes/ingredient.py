@@ -9,6 +9,29 @@ class Ingredient(object):
 		self.quantity = quantity
 		self.measurement = measurement
 
+        def parseIngredients(self):
+		for item in extract_ingredients(self.raw):
+			current = item['amount']
+			if current == None:
+				newIngredient = Ingredient(item['name'], None, None)
+				newIngredient.showIngredient()
+			else:
+				match = re.search("[a-zA-Z]+", current)
+				if match == None:
+					newIngredient = Ingredient(item['name'], item['amount'], "None")
+					self.ingredients.append(newIngredient)
+					newIngredient.showIngredient()
+					continue
+				else:
+					newIngredient = Ingredient(item['name'], item['amount'], match.group())
+					self.ingredients.append(newIngredient)
+					newIngredient.showIngredient()
+
+	def displayIngred(self):
+		for ingred in self.ingredients:
+			ingred.showIngredient()
+			
+
 	def showIngredient(self):
 		current = self.quantity
 
