@@ -19,9 +19,13 @@ class Recipe(object):
 		return Recipe.parse(raw_recipe)
 		
 	def parse(raw_recipe):
+		"""parsing recipe download into recipe structure"""
 		(raw_name, raw_ingredients, raw_directions) = raw_recipe
-		ingredients = parseIngredients(raw_ingredients) """parsing recipe download"""
-		""" ... """
+		name = parseRecipeName(raw_name)
+		ingredients = parseIngredients(raw_ingredients)
+		tools = parseTools(raw_directions)
+		methods = parseMethods(raw_directions)
+		directions = parseDirections(raw_directions)		
 		return Recipe(name, ingredients, tools, methods, directions)
 
 	def veggitize(self):
@@ -56,15 +60,15 @@ def parseIngredients(raw_ingredients):
 	"""Parse ingredients from the extracted recipe"""	
 	return [Ingredient.parse(i) for i in raw_ingredients]
 	
-def getMethods(raw_directions):
+def parseMethods(raw_directions):
 	"""Parse methods from the extracted recipe by searching for verbs"""
 	self.methods = """NLTK parsing here"""
 	
-def getTools(raw_directions):
+def parseTools(raw_directions):
 	"""Not sure what to do, so I'm hard coding a list of tools in tools.py"""
 	self.tools = """NLTK parsing here"""
 
-def getDirections(raw_directions):
+def parseDirections(raw_directions):
 	"""Parse directions from the extracted recipe"""
 	return [Direction.parse(i) for i in raw_directions]
 	

@@ -1,6 +1,5 @@
 import nltk
 import download
-from recipe import Recipe
 
 class Ingredient(object):
 	def __init__(self, name, quantity, measurement, descriptor, preparation):
@@ -10,10 +9,7 @@ class Ingredient(object):
 		self.descriptor = descriptor
 		self.preparation = preparation
 	
-	def getRecipe(url):
-		"""Obtain downloaded recipe"""
-		recipe = download.download_recipe(url)
-		return recipe
+	def parse(raw_ingred):
 		
 	def parseIngredient(recipe):
 		"""Parse ingredient attribute values from the extracted recipe"""
