@@ -17,3 +17,8 @@ class Method(object):
 		self.primary = """NLTK parsing here"""
 		self.helper = """NLTK parsing here"""
 		return self
+
+	def healthy(self):
+		## i think the only healthy alternative pair thats significant is deep-fry to baking
+		newIngredient = self.primary
+		return newIngredient

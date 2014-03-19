@@ -36,4 +36,19 @@ class Recipe(object):
 			]
 			self.directions = newDirections
 
+	def makeHealthy(self):
+		for oldIngredient in self.ingredients:
+			newIngredient = oldIngredient.healthy()
+			newDirections = [
+				for direction in self.directions:
+					direction.updateIngredients(oldIngredient, newIngredient)
+			]
+			self.directions = newDirections
+			newMethods = [
+				for method in self.methods
+					newMethod = method.healthy()
+			]
+			self.methods = newMethods
+
+
 	

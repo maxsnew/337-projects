@@ -28,3 +28,14 @@ class Ingredient(object):
                 """Return a vegetarian substitue for this ingredient"""
 		newIngredient = self
 		return newIngredient
+
+	def healthy(self):
+				#Return a healthier alternative for this ingredient
+				# whole milk --> skim milk
+				# butter --> olive oil
+				# mayo 	--> greek yogurt or avocado
+				# pasta --> whole-grain pasta
+				# bread --> whole-grain bread
+				# ice cream --> cool whip
+		newIngredient = self
+		return newIngredient
