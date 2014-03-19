@@ -3,6 +3,7 @@ import re
 import download
 
 class Ingredient(object):
+<<<<<<< HEAD
 	def __init__(self, name, quantity, measurement):
 		self.name = name
 		self.quantity = quantity
@@ -22,39 +23,54 @@ class Ingredient(object):
 			print ('{\n\t"name": ' + self.name
 			      + '\n\t"quantity": ' + self.quantity
 			      + '\n\t"measurement": ' + self.measurement + '\n},')
+=======
+	def __init__(self, name, quantity, measurement, descriptor, preparation):
+		self.name = name
+		self.quantity = 0
+		self.measurement = measurement
+		self.descriptor = descriptor
+		self.preparation = preparation
+>>>>>>> af2405dbe5bd8bea8fd516a785d0a14d5b33a823
 	
-# 	def parse(raw_ingred): """would this take raw_ingred or our new list created in recipe.py?"""
-# 		"""Parse ingredient attribute values from the extracted recipe"""
-# 		name = parseIngredientName(raw_ingred)
-# 		quantity = parseQuantity(raw_ingred)
-# 		measurement = parseMeasurement(raw_ingred)
-# 		descriptor = parseDescriptor(raw_ingred)
-# 		preparation = parsePreparation(raw_ingred)
-# 		return Ingredient(name, quantity, measurement, descriptor, preparation)
 
-# 	def makeVeggie(self):
-#                 """Return a vegetarian substitue for this ingredient"""
-# 		newIngredient = self
-# 		return newIngredient
+	def makeVeggie(self):
+                """Return a vegetarian substitue for this ingredient"""
+		newIngredient = self
+		return newIngredient
 
-# 	def healthy(self):
-# 				#Return a healthier alternative for this ingredient
-# 				# whole milk --> skim milk
-# 				# butter --> olive oil
-# 				# mayo 	--> greek yogurt or avocado
-# 				# pasta --> whole-grain pasta
-# 				# bread --> whole-grain bread
-# 				# ice cream --> cool whip
-# 		newIngredient = self
-# 		return newIngredient
+	def healthy(self):
+				#Return a healthier alternative for this ingredient
+				# whole milk --> skim milk
+				# butter --> olive oil
+				# mayo 	--> greek yogurt or avocado
+				# pasta --> whole-grain pasta
+				# bread --> whole-grain bread
+				# ice cream --> cool whip
+		newIngredient = self
+		return newIngredient
 
-# def parseIngredientName(raw_ingred):
+        @staticmethod
+        def parse(raw_ingred):
+                """would this take raw_ingred or our new list created in recipe.py?
+		   Parse ingredient attribute values from the extracted recipe"""
+		name = parseIngredientName(raw_ingred)
+		quantity = parseQuantity(raw_ingred)
+		measurement = parseMeasurement(raw_ingred)
+		descriptor = parseDescriptor(raw_ingred)
+		preparation = parsePreparation(raw_ingred)
+		return Ingredient(name, quantity, measurement, descriptor, preparation)
 
-# def parseQuantity(raw_ingred):
+def parseIngredientName(raw_ingred):
+        raise Exception('Leesha or David')
+                        
+def parseQuantity(raw_ingred):
+        raise Exception('Leesha or David')
 
-# def parseMeasurement(raw_ingred):
+def parseMeasurement(raw_ingred):
+        raise Exception('Leesha or David')
 
-# def parseDescriptor(raw_ingred):
+def parseDescriptor(raw_ingred):
+        raise Exception('Leesha or David')
 
-# def parsePreparation(raw_ingred):
-
+def parsePreparation(raw_ingred):
+        raise Exception('Leesha or David')

@@ -1,35 +1,42 @@
 import download
-import recipe
+from recipe import Recipe
 
 #vegetarian, cuisine, and healthy are filler names for the programs David is going to write
 def recipe_interface():
     #start by getting the url for the recipe
     while True:
-    y = input('What recipe would you like to work on today?')
-    if(y.find("allrecipes.com/") == -1):
-        print("Please put in a url from allrecipes.com")
-        recipe_interface()
-    else:
-        recipe = Recipe()
-        #print out the original recipe
-        print('Here is the original recipe' recipe.getRecipe(y))
-        #Then ask what transformation to do
-        while True:
-            print('What would you like to do with your recipe?')
-            print('1 = Make Vegetarian/Vegan')
-            print('2 = Change cuisine style')
-            print('3 = Find healthier alternatives')
-            x = input()
-            if(x == '1'):
-                recipe.veggitize()
-                break
-            elif(x == '2'):
-                changed = cuisine(recipe)
-                break
-            elif(x == '3'):
-                recipe.makeHealthy()
-                break
-            else:
-                print('Please pick a number corresponding to one of the available options')
-        #Then print the new recipe
-        print("Here's your new recipe!/n" recipe)
+        url = raw_input('What recipe would you like to work on today?\n')
+        if(url.find("allrecipes.com/") == -1):
+            print("Please put in a url from allrecipes.com")
+            continue
+        else:
+            #print out the original recipe
+            raw_recipe = download.download_recipe(url)
+            recipe     = Recipe.parse(raw_recipe)
+            print('Here is the original recipe:')
+            print(recipe.pretty_recipe())
+
+            # Then ask what transformation to do
+            while True:
+                print('What would you like to do with your recipe?')
+                print('1 = Make Vegetarian/Vegan')
+                print('2 = Change cuisine style')
+                print('3 = Find healthier alternatives')
+                x = raw_input()
+                if(x == '1'):
+                    new_recipe = recipe.veggitize()
+                    break
+                elif(x == '2'):
+                    new_recipe = cuisine(recipe)
+                    break
+                elif(x == '3'):
+                    new_recipe = recipe.makeHealthy()
+                    break
+                else:
+                    print('Please pick a number corresponding to one of the available options')
+            # Then print the new recipe
+            print("Here's your new recipe!")
+            print(recipe.pretty_recipe())
+
+if __name__ == '__main__':
+    recipe_interface()

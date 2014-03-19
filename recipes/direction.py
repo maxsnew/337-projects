@@ -21,10 +21,11 @@ class Direction(object):
 		return Direction(time, ingredients, tools, methods)
 
 	def updateIngredient(self, old, new):
-		for ingredient in self.ingredients
+		for ingredient in self.ingredients:
 			if ingredient == old:
 				ingredient = new
 		return ingredient
 
 def parseTime(raw_directions):
 	"""will work on this later, it's optional to break up directions into a direction objects with attribs like time, etc"""
+        
