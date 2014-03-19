@@ -13,8 +13,19 @@ class Method(object):
 		helper = parseHelper(raw_directions)
 		return Method(primary, helper)
 
-def parsePrimary(raw_directions):
+def findVerbs(raw_directions):
+	"""Output a list of verbs, sorted by frequency"""
+	text = nltk.word_tokenize(raw_directions)
+	nltk.pos_tag(text)
+	wordFreq = nltk.FreqDist(text)
+	verbTagList = [word + "/" + tag for (word, tag) in wordFreq if tag.startswith('V')]
+	verbList = [int(i[0]) for i in verbTagList]
+	return verbList
+		
+def parsePrimary(verbList):
 	"""Primary will be the most often used verb"""
+	return verbList[0]
 
-def parseHelper(raw_directions): 
+def parseHelper(verbList): 
 	"""Helper will be the second most used verb"""
+	return verbList[1]

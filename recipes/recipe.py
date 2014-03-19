@@ -57,18 +57,18 @@ def parseRecipeName(raw_name):
 	return name
 		
 def parseIngredients(raw_ingredients):
-	"""Parse ingredients from the extracted recipe"""	
+	"""Parse ingredients from the extracted ingredients"""	
 	return [Ingredient.parse(i) for i in raw_ingredients]
 	
 def parseMethods(raw_directions):
-	"""Parse methods from the extracted recipe by searching for verbs"""
+	"""Parse methods from the extracted directions by searching for verbs"""
 	return [Method.parse(i) for i in raw_directions]
 	
 def parseTools(raw_directions):
-	"""Not sure what to do, so I'm hard coding a list of tools in tools.py"""
+	"""Parse tools from the extracted directions by hard coding tool list"""
 	return [Tools.parse(i) for i in raw_ingredients]
 
 def parseDirections(raw_directions):
-	"""Parse directions from the extracted recipe"""
+	"""Parse directions from the extracted directions""
 	return [Direction.parse(i) for i in raw_directions]
 	
