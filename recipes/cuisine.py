@@ -1,6 +1,6 @@
-"""Lists of ingredients for most popular cuisines"""
+# Lists of ingredients for most popular cuisines
 
-Mexican[
+Mexican = [
 		'red chile sauce',
 		'green chile sauce',
 		'enchilada sauce',
@@ -111,12 +111,12 @@ Mexican[
 		'piloncillo',
 ]
 
-Chinese[]
+Chinese = []
 
-Italian[]
+Italian = []
 
-Indian[]
+Indian = []
 
-French[]
+French = []
 
 
