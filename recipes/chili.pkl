@@ -1,0 +1,71 @@
+(VChicken and Corn Chili
+(lp1
+(dp2
+S'amount'
+p3
+V4
+sS'name'
+p4
+Vskinless, boneless chicken breast halves
+p5
+sa(dp6
+g3
+V1 (16 ounce) jar
+p7
+sg4
+Vsalsa
+p8
+sa(dp9
+g3
+V2 teaspoons
+p10
+sg4
+Vgarlic powder
+p11
+sa(dp12
+g3
+V1 teaspoon
+p13
+sg4
+Vground cumin
+p14
+sa(dp15
+g3
+V1 teaspoon
+p16
+sg4
+Vchili powder
+p17
+sa(dp18
+g3
+Nsg4
+Vsalt to taste
+p19
+sa(dp20
+g3
+Nsg4
+Vground black pepper to taste
+p21
+sa(dp22
+g3
+V1 (11 ounce) can
+p23
+sg4
+VMexican-style corn
+p24
+sa(dp25
+g3
+V1 (15 ounce) can
+p26
+sg4
+Vpinto beans
+p27
+sa(lp28
+VPlace chicken and salsa in the slow cooker the night before you want to eat this chili. Season with garlic powder, cumin, chili powder, salt, and pepper. Cook 6 to 8 hours on Low setting.
+p29
+aVAbout 3 to 4 hours before you want to eat, shred the chicken with 2 forks. Return the meat to the pot, and continue cooking.
+p30
+aVStir the corn and the pinto beans into the slow cooker. Simmer until ready to serve.
+p31
+atp32
+.
