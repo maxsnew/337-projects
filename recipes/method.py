@@ -22,5 +22,42 @@ class Method(object):
 
 
 def is_cooking_method(word):
-        """TODO: look in a big fat table of cooking methods"""
-        return True
+        """look in a list of cooking methods"""
+		methods = [
+				  'bake',
+				  'roast',
+				  'broil',
+				  'grill',
+				  'fry',
+				  'saute',
+				  'sweat',
+				  'torch',
+				  'flambe',
+				  'blanch',
+				  'boil',
+				  'braise',
+				  'poach',
+				  'scald',
+				  'simmer',
+				  'steam',
+				  'smoke',
+				  'reduce',
+				  'brine',
+				  'blacken',
+				  'brown',
+				  'caramelize',
+				  'curdle',
+				  'dry',
+				  'glaze',
+				  'infuse',
+				  'juice',
+				  'marinate',
+				  'parboil',
+				  'sear',
+				  'steep',
+				  'stew' 
+		]
+		if (word in methods):
+			return True
+		else:
+			return False
