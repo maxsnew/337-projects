@@ -292,19 +292,13 @@ Indian = [
         'turmeric'
 ]
 
-French = [
-        'bread',
-        'butter',
-        'cheese',
-        'fleur de sel',
-        'herbes de provence',
-        'leeks',
-        'mustard',
-        'olive oil',
-        'shallots',
-        'tarragon',
-        'vinegar',
-        'wine'			
-]
+French = {
+        100: ['butter', 'cheese'],
+        140: ['wine'],
+        200: ['vinegar', 'mustard'],
+        400: ['olive oil'],
+        1100: ['leeks', 'shallots'],
+        1800: ['bread'],
+}
 
 
