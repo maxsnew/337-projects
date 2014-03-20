@@ -8,6 +8,10 @@ class Direction(object):
 	def __init__(self, tagged):
                 self.tagged  = tagged
 
+        def pretty(self):
+                untagged = [ untag(t) for t in self.tagged ]
+                return ' '.join(untagged)
+
 	@staticmethod
 	def parse(tagged_direction, ingredients):
 		"""Parse direction/step attributes from the extracted recipe and from other classes"""
@@ -26,10 +30,10 @@ class Direction(object):
 
 def replace_tagged(tagged, old, new):
         lhs, pos  = tagged
-        if isinstance(rhs, tuple):
+        if isinstance(lhs, tuple):
                 word, ing = lhs
                 if ing is old:
-                        return ((word, new), pos)
+                        return ((new.name, new), pos)
         return (lhs, pos)
 
 def tag_if_ingredient(tagged, ingredients):
@@ -41,6 +45,11 @@ def tag_if_ingredient(tagged, ingredients):
                         
         return tagged
 
-def parseTime(raw_directions):
-	"""will work on this later, it's optional to break up directions into a direction objects with attribs like time, etc"""
-        return None
+def untag(t):
+        lhs, _ = t
+        if isinstance(lhs, tuple):
+                word, _ = lhs
+                return word
+        else:
+                return lhs
+                

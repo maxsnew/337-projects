@@ -12,23 +12,21 @@ class Recipe(object):
 		self.methods = methods
 		self.directions = directions
 
-	def pretty_recipe(self):
-		print(self.name + "\n")
-		for i in self.ingredients:
-			if i.measurement == None:
-				print(i.quantity + " " + i.name)
-				continue
-			else:
-				print(i.quantity + " " + i.measurement + " " + i.name)
-		for i in self.directions:
-			print(i.tagged)
-		
+	def pretty(self):
+                header = 'Recipe: ' + self.name
+                ingred_header = 'You will need the following ingredients: '
+                ingreds = pretty_list(self.ingredients)
+                tools_header = 'And the following tools:'
+                tools   = pretty_list(self.tools)
+                dirs_header = 'Here are the directions:'
+                directions  = pretty_list(self.directions)
+                return '\n'.join([header, '\n',ingred_header,ingreds, '\n',tools_header,tools,'\n',dirs_header, directions])
 
 	def veggitize(self):
 		for oldIngredient in self.ingredients:
-			newIngredient = oldIngredient.makeVeggie()
+			newIngredient = oldIngredient.veggitize()
 			newDirections = [
-                                direction.updateIngredients(oldIngredient, newIngredient)
+                                direction.updateIngredient(oldIngredient, newIngredient)
 				for direction in self.directions
                                 
 			]
@@ -69,3 +67,8 @@ class Recipe(object):
 		tools   = Tool.find_tools(methods)
 		return Recipe(name, ingredients, tools, methods, directions)
 	
+def pretty_list(l):
+        return '\n'.join([
+                str(i+1) + '. ' + l[i].pretty()
+                for i in range(len(l))
+        ])

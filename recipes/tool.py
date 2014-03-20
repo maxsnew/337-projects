@@ -41,7 +41,7 @@ class Tool(object):
                                 tools.extend('spatula')
                         elif (i == 'roll'):
                                 tools.extend('rolling pin')
-                                tools_noDups = set(tools)
-                                return [
-                                        Tool(t) for t in tools_noDups
-                                ]
+                tools_noDups = set(tools)
+                return [
+                        Tool(t) for t in tools_noDups
+                ]
