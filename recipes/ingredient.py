@@ -80,18 +80,6 @@ class Ingredient(object):
                 else:
                         # Must already be veggie.
                         return self
-                        
-        def deveggitize(self):
-                """Return a beef substitue for tofu"""
-                if self == 'TOFU':
-                        # Meat and Greet!
-                        newIngredient = copy.deepcopy(self)
-                        newIngredient.name = 'BEEF'
-                        newIngredient.food_group = 1300
-                        return newIngredient
-                else:
-                        # Must already be meat.
-                        return self
 
         def change_cuisine(self, cuisine):
                 """Return an item of the desired cuisine in the same food group"""
@@ -233,43 +221,44 @@ Mexican = {
         
       
 
-Chinese = [
-        'chili sauce',
-        'Chinese mushrooms',
+Chinese = {
+	200:['ginger',]
+	400: ['rice vinegar',
+        'toasted sesame oil']
+        600: ['chili sauce',
         'soy sauce',
-        'fermented black beans',
-        'ginger',
         'hoisin sauce',
-        'oyster sauce',
-        'rice',
-        'rice vinegar',
-        'rice wine',
-        'toasted sesame oil'
-]
+        'oyster sauce',]
+        1100: ['Chinese mushrooms',]
+        1400: ['rice wine',]
+        1600: ['fermented black beans',]
+        2000: ['rice',]
+}
 
-Italian = [
-        'canned tomatoes',
-        'dried pasta',
-        'arborio rice',
-        'flour',
-        'cannellini beans',
-        'bread crumbs',
-        'artichokes',
-        'olives',
-        'pine nuts',
-        'capers',
+Italian = {
+	100: ['mozzarella',
+        'parmesan',]
+	200: ['capers',
         'garlic',
-        'proscuitto',
         'basil',
-        'mozzarella',
-        'extra-virgin olive oil',
-        'balsamic vinegar',
-        'wine',
-        'parmesan',
         'sage',
         'thyme',
-        'oregano'
-]
+        'oregano']
+        400: ['extra-virgin olive oil',
+        'balsamic vinegar',]
+        900: ['olives',]
+        1000: ['proscuitto',]
+        1100: ['canned tomatoes',
+        'artichokes',]
+        1400: ['wine',]
+        1600: ['cannellini beans',
+        'pine nuts',]
+        2000: ['dried pasta',
+        'arborio rice',
+        'flour',
+        'bread crumbs',]
+        
+}
 
 Indian = {
 	200: ['coriander', 'cumin', 'mustard seeds','tumeric', 'cinnamon', 'cardamom','garam masala'],
