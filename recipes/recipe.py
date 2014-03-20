@@ -26,14 +26,20 @@ class Recipe(object):
 
 	def veggitize(self):
                 new_recipe = copy.deepcopy(self)
-		for oldIngredient in self.ingredients:
-			newIngredient = oldIngredient.veggitize()
-			newDirections = [
-                                direction.updateIngredient(oldIngredient, newIngredient)
-				for direction in new_recipe.directions
-                                
-			]
-			new_recipe.directions = newDirections
+                new_ingredients = [
+                        old_ingredient.veggitize()
+                        for old_ingredient in self.ingredients
+                ]
+                new_directions = [
+                        direction.update_ingredients(self.ingredients, new_ingredients)
+                        for direction in new_recipe.directions
+                ]
+                new_recipe.name        = update_name(self.name, self.ingredients, new_ingredients)
+                new_recipe.ingredients = new_ingredients
+                new_recipe.directions  = new_directions
+                if new_recipe.ingredients is self.ingredients:
+                        print 'wtf'
+                        raise Exception('wtf')
                 return new_recipe
 	def makeHealthy(self):
 		for oldIngredient in self.ingredients:
@@ -75,3 +81,15 @@ def pretty_list(l):
                 str(i+1) + '. ' + l[i].pretty()
                 for i in range(len(l))
         ])
+
+def update_name(name, olds, news):
+        return ' '.join([
+                update_ing(tok, olds, news)
+                for tok in nltk.word_tokenize(name)
+        ])
+
+def update_ing(tok, olds, news):
+        for i in range(len(olds)):
+                if olds[i].is_ingredient(tok.lower()):
+                        return news[i].name
+        return tok

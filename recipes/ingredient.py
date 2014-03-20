@@ -47,9 +47,9 @@ class Ingredient(object):
 
         def pretty(self):
                 amount = self.raw['amount']
-                name = self.raw['name']
+                name = self.name
                 if amount:
-                        return amount + name
+                        return ' '.join([amount, name])
                 else: 
                         return name
                 
@@ -70,7 +70,7 @@ class Ingredient(object):
                 
 	def veggitize(self):
                 """Return a vegetarian substitue for this ingredient"""
-                if self.is_meat:
+                if self.is_meat():
                         # TOFUify!
                         newIngredient = copy.deepcopy(self)
                         newIngredient.name = 'TOFU'
@@ -116,7 +116,12 @@ class Ingredient(object):
 def find_food_group(db, name):
         # Find the food group
         c = db.cursor()
-        results = c.execute('SELECT FoodGroupId FROM Foods WHERE FoodName LIKE ?', ('%'+name+'%',)).fetchall()
+        results = [
+                res[0]
+                for tok in nltk.word_tokenize(name)
+                for res in c.execute('SELECT FoodGroupId FROM Foods WHERE FoodName LIKE ?', ('%'+tok+'%',)).fetchall()
+        ]
+
         if results:
                 return max(set(results), key=results.count)
         else:
