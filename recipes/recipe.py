@@ -12,9 +12,17 @@ class Recipe(object):
 		self.methods = methods
 		self.directions = directions
 
-        def pretty_recipe(self):
-                """Returns a string that is a human-readable recipe"""
-                raise Exception('Unimplemented: Donald or David')
+	def pretty_recipe(self):
+		print(self.name + "\n")
+		for i in self.ingredients:
+			if i.measurement == None:
+				print(i.quantity + " " + i.name)
+				continue
+			else:
+				print(i.quantity + " " + i.measurement + " " + i.name)
+		for i in self.directions:
+			print(i.tagged)
+		
 
 	def veggitize(self):
 		for oldIngredient in self.ingredients:
