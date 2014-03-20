@@ -288,10 +288,13 @@ French = {
 
 HealthyIng = {
 	100: ['egg whites', 'soy milk', 'almond milk'],
-	400: ['olive oil', 'almond butter', 'peanut butter', 'fish oil']
+	400: ['olive oil', 'almond butter', 'peanut butter', 'fish oil', 'apple sauce', 'avocado puree', 'mashed bananas']
 	500: ['turkey']
-	600: ['chicken broth', 'beef broth', 'vegetable stock']
+	600: ['chicken broth', 'beef broth', 'vegetable stock', 'low sodium soy sauce']
 	700: ['deli turkey', 'turkey sausage']
-	2000: ['whole wheat pasta', 'brown rice']
+	1300: ['bison', 'turkey', 'ground turkey', 'quinoa']
+	1900: ['apple sauce', 'vanilla']
+	2000: ['whole wheat pasta', 'brown rice', 'whole wheat flour', 'almond flour', 'coconut flour', 'couscous', 'quinoa', 'zucchini ribbons', 'cauliflower', 'rolled oats']
+	
 
 }
