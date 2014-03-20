@@ -65,7 +65,7 @@ class Recipe(object):
                         Direction.parse(d, ingredients)
                         for d in tagged_directions
                 ]
-		tools   = Tool.find_tools(directions)
 		methods = Method.find_methods(directions)
+		tools   = Tool.find_tools(methods)
 		return Recipe(name, ingredients, tools, methods, directions)
 	
