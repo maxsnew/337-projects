@@ -258,23 +258,10 @@ Italian = [
         'oregano'
 ]
 
-Indian = [
-	200: ['coriander', 'cumin', 'mustard seeds','tumeric', 'cinnamon' ]
-        'mung beans',
-        'lentils',
-        'chickpeas',
-        'cardamom',
-        'chili peppers',
-        'cinnamon',
-       
-      
-        'garam masala',
-        'ginger',
-        
-        'onions',
-        'garlic',
-       
-]
+Indian = {
+	200: ['coriander', 'cumin', 'mustard seeds','tumeric', 'cinnamon', 'cardamom','garam masala']
+	1100: ['chickepeas', 'chili peppers', 'lentils', 'mung beans', 'ginger', 'onions', 'garlic']
+}
 
 French = {
         100: ['butter', 'cheese'],
