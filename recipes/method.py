@@ -23,9 +23,9 @@ class Method(object):
                 ]
 
 
-methods = ['bake', 'roast', 'broil', 'grill', 'fry', 'saute', 'sweat', 'torch', 'flambe', 'blanch', 'boil', 'braise', 'poach', 'scald', 'simmer', 'steam', 'smoke', 'reduce', 'brine', 'blacken', 'brown', 'caramelize', 'curdle', 'dry', 'glaze', 'infuse', 'juice', 'marinate', 'parboil', 'sear', 'steep', 'stew' ]
+methods = ['bake', 'roast', 'broil', 'preheat', 'grill', 'fry', 'saute', 'sweat', 'torch', 'flambe', 'blanch', 'boil', 'braise', 'poach', 'scald', 'simmer', 'steam', 'smoke', 'reduce', 'brine', 'blacken', 'brown', 'caramelize', 'curdle', 'dry', 'glaze', 'infuse', 'juice', 'marinate', 'parboil', 'sear', 'steep', 'stew' 'beat', 'whisk', 'carve','chop', 'cut', 'slice', 'dice', 'mix', 'stir', 'measure', 'peel', 'flip', 'roll',]
 stemmed_methods = [stemmer.stem(m) for m in methods]
 
 def is_cooking_method(word):
         """look in a list of cooking methods"""
-        return stemmer.stem(word) in stemmed_methods
+        return stemmer.stem(word) in stemmed_methods 
