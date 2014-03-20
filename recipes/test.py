@@ -11,6 +11,11 @@ def main():
             recipe     = Recipe.parse(db, raw_recipe)
             for d in recipe.directions:
                     print d.tagged
+            print 'NEXT\n'
+            veg = recipe.veggitize()
+            for d in veg.directions:
+                    print d.tagged
+            print veg.pretty()
 	
 if __name__ == '__main__':
     main()

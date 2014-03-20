@@ -42,7 +42,7 @@ def replace_tagged(tagged, old, new):
         lhs, pos  = tagged
         if isinstance(lhs, tuple):
                 word, ing = lhs
-                if ing is old:
+                if ing.name == old.name:
                         return ((new.name, new), pos)
         return (lhs, pos)
 
