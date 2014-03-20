@@ -80,16 +80,14 @@ class Ingredient(object):
                         # Must already be veggie.
                         return self
 
-        
-                        
 	def healthy(self):
-                #Return a healthier alternative for this ingredient
-                # whole milk --> skim milk
-                # butter --> olive oil
-                # mayo 	--> greek yogurt or avocado
-                # pasta --> whole-grain pasta
-                # bread --> whole-grain bread
-                # ice cream --> cool whip
+				#Return a healthier alternative for this ingredient
+				# whole milk --> skim milk
+				# butter --> olive oil
+				# mayo 	--> greek yogurt or avocado
+				# pasta --> whole-grain pasta
+				# bread --> whole-grain bread
+				# ice cream --> cool whip
 		newIngredient = self
 		return newIngredient
 
@@ -130,40 +128,19 @@ def find_food_group(db, name):
                 return None # unknown!
 # Lists of ingredients for most popular cuisines
 
-Mexican = [
-        'red chile sauce',
-        'green chile sauce',
-        'enchilada sauce',
-        'diced green chiles',
-        'whole green chiles',
-        'chipotle chiles',
-        'jalapenos',
-        'tomato sauce',
-        'tomato paste',
-        'refried beans',
-        'black beans',
-        'tamarind',
-        'chicken stock',
-        'beef stock',
-        'evaporated milk',
-        'sweetened condensed milk',
-        'new mexico chiles',
-        'anaheim chiles',
-        'hatch chiles',
-        'poblano chiles',
-        'ancho chiles',
-        'chile negro',
-        'serrano chiles',
-        'guajillo chiles',
-        'pasilla chiles',
-        'cascabel chiles',
+Mexican = {
+	100: ['evaporated milk', 
+	'sweetened condensed milk', 
+        'jack cheese',
+        'queso fresco',
+        'queso blanco',
+        'queso enchilado',
+        'cotija',
+        'panela',
+        'crema', 
+        'eggs']
         
-        'pinto beans',
-        'black beans',
-        'white rice',
-        'white rice',
-        
-        'garlic powder',
+        200: ['garlic powder',
         'onion powder',
         'standard chile powder',
         'cumin',
@@ -179,65 +156,69 @@ Mexican = [
         'anise',
         'vanilla',
         'vanilla beans',
-        'hoja santa',
-        'flour tortillas',
+        'hoja santa']
+        
+        400: ['vegetable oil', 'lard']
+        
+        500: ['chicken breasts',
+        'chicken pieces',
+        'whole chicken']
+        
+        600: ['tomato sauce',
+        'tomato paste','red chile sauce',
+        'green chile sauce',
+        'enchilada sauce','chicken stock',
+        'beef stock' ]
+        
+        900: ['limes',
+        'lemons', 'plantains', ]
+        
+        1000: ['pork loin',
+        'pork roast',
+        'chorizo',
+        'ribs']
+        
+        1100: ['tomatoes',
+        'tomatillos','new mexico chiles',
+        'anaheim chiles',
+        'hatch chiles',
+        'poblano chiles',
+        'ancho chiles',
+        'chile negro',
+        'serrano chiles',
+        'guajillo chiles',
+        'pasilla chiles',
+        'cascabel chiles','diced green chiles',
+        'whole green chiles',
+        'chipotle chiles','jalapenos','refried beans',
+        'black beans','onion',
+        'potatoes', 'green onion',
+        'bell pepper',
+        'avocado',
+        'garlic','cucumber',
+        'jicama', 'pinto beans']
+        
+        1300: ['ground beef',
+        'skirt steak', ]
+        
+        1700: ['veal',
+        'lamb']
+        
+        1800: ['sugar',
+        'honey', 'unsweetened chocolate',
+        'mexican chocolate',]
+        
+        2000: ['flour tortillas',
         'corn tortillas',
         'white flour',
         'corn meal',
         'masa harina',
         'cornmeal',
-        'hominy',
+        'hominy','white rice']
+ }  
+ 
         
-        'tomatoes',
-        'tomatillos',
-        'cilantro',
-        'epazote',
-        'onion',
-        'potatoes',
-        'cucumber',
-        'parsley',
-        'jicama',
-        'limes',
-        'lemons',
-        'green onion',
-        'bell pepper',
-        'avocado',
-        'garlic',
-        'plantains',
-        
-        'jack cheese',
-        'queso fresco',
-        'queso blanco',
-        'queso enchilado',
-        'cotija',
-        'panela',
-        'crema',
-        
-        'eggs',
-        'ground beef',
-        'skirt steak',
-        'chicken breasts',
-        'chicken pieces',
-        'whole chicken',
-        'veal',
-        'lamb',
-        'pork loin',
-        'pork roast',
-        'chorizo',
-        'ribs',
-        
-        'tortilla chips',
-        'lard',
-        'tequila',
-        'vegetable oil',
-        'coarse salt',
-        'chile sauce',
-        'sugar',
-        'honey',
-        'unsweetened chocolate',
-        'mexican chocolate',
-        'piloncillo'
-]
+      
 
 Chinese = [
         'chili sauce',
@@ -278,20 +259,21 @@ Italian = [
 ]
 
 Indian = [
+	200: ['coriander', 'cumin', 'mustard seeds','tumeric', 'cinnamon' ]
         'mung beans',
         'lentils',
         'chickpeas',
         'cardamom',
         'chili peppers',
         'cinnamon',
-        'coriander',
-        'cumin',
+       
+      
         'garam masala',
         'ginger',
-        'mustard seeds',
+        
         'onions',
         'garlic',
-        'turmeric'
+       
 ]
 
 French = {
