@@ -14,7 +14,7 @@ class Recipe(object):
 
         def pretty_recipe(self):
                 """Returns a string that is a human-readable recipe"""
-                raise Error('Unimplemented: Donald or David')
+                raise Exception('Unimplemented: Donald or David')
 
 	def veggitize(self):
 		for oldIngredient in self.ingredients:
@@ -57,7 +57,7 @@ class Recipe(object):
                         Direction.parse(d, ingredients)
                         for d in tagged_directions
                 ]
-		tools   = Tool.find_tools(tagged_directions)
-		methods = Method.find_methods(tagged_directions)
+		tools   = Tool.find_tools(directions)
+		methods = Method.find_methods(directions)
 		return Recipe(name, ingredients, tools, methods, directions)
 	
