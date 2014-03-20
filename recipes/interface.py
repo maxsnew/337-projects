@@ -25,6 +25,7 @@ def recipe_interface():
                     print('1 = Make Vegetarian')
                     print('2 = Make NOT Vegetarian')
                     print('3 = Change cuisine style')
+                    print('4 = Make healthy')
                     x = raw_input()
                     if x in trans_choices.keys():
                         new_recipe = trans_choices[x](recipe)
@@ -59,11 +60,15 @@ def change_cuisine(recipe):
 
 def make_not_veggie(recipe):
     return recipe.make_not_veggie()            
-            
+
+def make_healthy(recipe):
+    return recipe.make_healthy()
+    
 trans_choices = {
     '1': make_veggie,
     '2': make_not_veggie,
     '3': change_cuisine,
+    '4': make_healthy,
 }
 
             

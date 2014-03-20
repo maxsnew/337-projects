@@ -74,7 +74,7 @@ class Ingredient(object):
                 if self.is_meat():
                         # TOFUify!
                         newIngredient = copy.deepcopy(self)
-                        newIngredient.name = 'TOFU'
+                        newIngredient.name = 'tofu'
                         newIngredient.food_group = 1600
                         return newIngredient
                 else:
@@ -91,12 +91,12 @@ class Ingredient(object):
                         return new_ing
                 else:
                         return self
-		def make_healthy(self, healthy):
+        def make_healthy(self):
                 """Return an healthy replacement ingred in the same food group"""
                 fg = self.food_group
-                if fg in healthy.keys():
+                if fg in HealthyIng.keys():
                         new_ing = copy.deepcopy(self)
-                        new_food = random.choice(healthy[fg])
+                        new_food = random.choice(HealthyIng[fg])
                         new_ing.name = new_food
                         return new_ing
                 else:
@@ -288,13 +288,13 @@ French = {
 
 HealthyIng = {
 	100: ['egg whites', 'soy milk', 'almond milk'],
-	400: ['olive oil', 'almond butter', 'peanut butter', 'fish oil', 'apple sauce', 'avocado puree', 'mashed bananas']
-	500: ['turkey']
-	600: ['chicken broth', 'beef broth', 'vegetable stock', 'low sodium soy sauce']
-	700: ['deli turkey', 'turkey sausage']
-	1300: ['bison', 'turkey', 'ground turkey', 'quinoa']
-	1900: ['apple sauce', 'vanilla']
-	2000: ['whole wheat pasta', 'brown rice', 'whole wheat flour', 'almond flour', 'coconut flour', 'couscous', 'quinoa', 'zucchini ribbons', 'cauliflower', 'rolled oats']
+	400: ['olive oil', 'almond butter', 'fish oil', 'apple sauce', 'avocado puree', 'mashed bananas'],
+	500: ['turkey'],
+	600: ['chicken broth', 'vegetable stock', 'low sodium soy sauce'],
+	700: ['deli turkey', 'turkey sausage'],
+	1300: ['turkey', 'ground turkey', 'quinoa'],
+	1900: ['apple sauce', 'vanilla'],
+	2000: ['whole wheat pasta', 'brown rice', 'whole wheat flour', 'almond flour', 'coconut flour', 'couscous', 'quinoa', 'zucchini ribbons', 'cauliflower', 'rolled oats'],
 	
 
 }
