@@ -25,19 +25,19 @@ class Direction(object):
 		return Direction(new_tagged)
 
 def replace_tagged(tagged, old, new):
-        pos, rhs = tagged
+        lhs, pos  = tagged
         if isinstance(rhs, tuple):
-                word, ing = rhs
+                word, ing = lhs
                 if ing is old:
-                        return (pos, (word, new))
-        return (pos, rhs)
+                        return ((word, new), pos)
+        return (lhs, pos)
 
 def tag_if_ingredient(tagged, ingredients):
-        pos, word = tagged
+        word, pos = tagged
         if pos == 'NN' or pos == 'NNS':
                 for ing in ingredients:
                         if ing.is_ingredient(word):
-                                return (pos, (word, ing))
+                                return ((word, ing), pos)
                         
         return tagged
 

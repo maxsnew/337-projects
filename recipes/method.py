@@ -14,7 +14,7 @@ class Method(object):
                 verbs = [
                         word
                         for direction in directions
-                        for (pos, word) in direction.tagged
+                        for (word, pos) in direction.tagged
                         if pos.startswith('V') and is_cooking_method(word)
                 ]
                 ordered = nltk.FreqDist(verbs).keys()

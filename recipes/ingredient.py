@@ -39,7 +39,7 @@ meat_groups = [500, 700, 1000, 1300, 1700]
 class Ingredient(object):
 	def __init__(self, food_group, name, quantity, measurement):
 		self.name = name
-                self.stem = stemmer.stem(name)
+                self.stems = [stemmer.stem(tok) for tok in nltk.word_tokenize(name)]
 		self.quantity = quantity
 		self.measurement = measurement
                 self.food_group = food_group
@@ -47,7 +47,7 @@ class Ingredient(object):
         def is_ingredient(self, txt):
                 """Returns True if the input is probably the same as this ingredient"""
                 other = stemmer.stem(txt)
-                return other == self.stem
+                return other in self.stems
 
 	def serialize(self):
 		return {
