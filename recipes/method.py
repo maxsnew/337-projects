@@ -1,6 +1,8 @@
 import nltk
 import download
 
+stemmer = nltk.stem.lancaster.LancasterStemmer()
+
 class Method(object):
 	def __init__(self, name):
 		self.name = name
@@ -21,43 +23,9 @@ class Method(object):
                 ]
 
 
+methods = ['bake', 'roast', 'broil', 'grill', 'fry', 'saute', 'sweat', 'torch', 'flambe', 'blanch', 'boil', 'braise', 'poach', 'scald', 'simmer', 'steam', 'smoke', 'reduce', 'brine', 'blacken', 'brown', 'caramelize', 'curdle', 'dry', 'glaze', 'infuse', 'juice', 'marinate', 'parboil', 'sear', 'steep', 'stew' ]
+stemmed_methods = [stemmer.stem(m) for m in methods]
+
 def is_cooking_method(word):
         """look in a list of cooking methods"""
-		methods = [
-				  'bake',
-				  'roast',
-				  'broil',
-				  'grill',
-				  'fry',
-				  'saute',
-				  'sweat',
-				  'torch',
-				  'flambe',
-				  'blanch',
-				  'boil',
-				  'braise',
-				  'poach',
-				  'scald',
-				  'simmer',
-				  'steam',
-				  'smoke',
-				  'reduce',
-				  'brine',
-				  'blacken',
-				  'brown',
-				  'caramelize',
-				  'curdle',
-				  'dry',
-				  'glaze',
-				  'infuse',
-				  'juice',
-				  'marinate',
-				  'parboil',
-				  'sear',
-				  'steep',
-				  'stew' 
-		]
-		if (word in methods):
-			return True
-		else:
-			return False
+        return stemmer.stem(word) in stemmed_methods
