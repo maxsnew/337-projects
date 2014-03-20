@@ -24,10 +24,10 @@ class Recipe(object):
                 directions  = pretty_list(self.directions)
                 return '\n'.join([header, '\n',ingred_header,ingreds, '\n',tools_header,tools,'\n',dirs_header, directions])
 
-	def veggitize(self):
+        def change_recipe(self, ingredient_update):
                 new_recipe = copy.deepcopy(self)
                 new_ingredients = [
-                        old_ingredient.veggitize()
+                        ingredient_update(old_ingredient)
                         for old_ingredient in self.ingredients
                 ]
                 new_directions = [
@@ -38,21 +38,22 @@ class Recipe(object):
                 new_recipe.ingredients = new_ingredients
                 new_recipe.directions  = new_directions
                 return new_recipe
-	def makeHealthy(self):
-		for oldIngredient in self.ingredients:
-			newIngredient = oldIngredient.healthy()
-			newDirections = [
-                                direction.updateIngredients(oldIngredient, newIngredient)
-                                for direction in self.directions
-                                
-			]
-			self.directions = newDirections
-			newMethods = [
-                                method.healthy()
-                                for method in self.methods
+                
+                
+        def veggitize(self):
+                return self.change_recipe(lambda i: i.veggitize())
 
-			]
-			self.methods = newMethods
+        def make_not_veggie(self):
+                """Just add bacon"""
+                new_recipe = copy.deepcopy(self)
+                new_recipe.ingredients = self.ingredients + [bacon]
+                new_recipe.directions  = self.directions + [fry_bacon, put_bacon]
+                return new_recipe
+        def change_cuisine(self, new_cuisine):
+                return self.change_recipe(lambda i: i.change_cuisine(new_cuisine))
+        
+	def make_healthy(self):
+                return self.change_recipe(lambda i: i.make_healthy())
 
         @staticmethod
 	def parse(db, raw_recipe):
@@ -90,3 +91,12 @@ def update_ing(tok, olds, news):
                 if olds[i].is_ingredient(tok.lower()):
                         return news[i].name
         return tok
+
+fry_bacon = Direction([('Fry', 'NNP'), ('bacon', 'NN')])
+put_bacon = Direction([('Put', 'VB'), ('bacon', 'NN'), ('on', 'IN'), ('food', 'NN')])
+        
+bacon = Ingredient({ 'amount': '2 strips', 'name'  : 'bacon' }, 
+                   1000,
+                   'bacon',
+                   '2',
+                   'pieces')        

@@ -1,13 +1,13 @@
 import sqlite3
 
 import download
+import ingredient
 from recipe import Recipe
 
-#vegetarian, cuisine, and healthy are filler names for the programs David is going to write
 def recipe_interface():
     with sqlite3.connect('db/food.db') as c:
-        #start by getting the url for the recipe
         while True:
+            #start by getting the url for the recipe
             url = raw_input('What recipe would you like to work on today?\n')
             if(url.find("allrecipes.com/") == -1):
                 print("Please put in a url from allrecipes.com")
@@ -22,24 +22,45 @@ def recipe_interface():
                 # Then ask what transformation to do
                 while True:
                     print('What would you like to do with your recipe?')
-                    print('1 = Make Vegetarian/Vegan')
-                    print('2 = Change cuisine style')
-                    print('3 = Find healthier alternatives')
+                    print('1 = Make Vegetarian')
+                    print('2 = Make NOT Vegetarian')
+                    print('3 = Change cuisine style')
                     x = raw_input()
-                    if(x == '1'):
-                        new_recipe = recipe.veggitize()
-                        break
-                    elif(x == '2'):
-                        new_recipe = cuisine(recipe)
-                        break
-                    elif(x == '3'):
-                        new_recipe = recipe.makeHealthy()
+                    if x in trans_choices.keys():
+                        new_recipe = trans_choices[x](recipe)
                         break
                     else:
                         print('Please pick a number corresponding to one of the available options')
-                        # Then print the new recipe
+
                 print("Here's your new recipe!")
                 print(new_recipe.pretty())
 
+        
+                
+def make_veggie(old_recipe):
+    return old_recipe.veggitize()                
+
+def change_cuisine(recipe):
+    while True:
+        print('What kind of cuisine would you like to make it?')
+        print('1 = French')
+        i = raw_input
+        if i in cuisine_choices.keys:
+            new_recipe = recipe.change_cuisine(cuising_choices[i])
+            break
+        else:
+            print 'Invalid option'
+
+def make_not_veggie(recipe):
+    return recipe.make_not_veggie()            
+            
+trans_choices = {
+    '1': make_veggie,
+    '2': make_not_veggie,
+    '3': change_cuisine,
+}
+
+cuisine_choices = {'1': ingredient.French}
+            
 if __name__ == '__main__':
     recipe_interface()
