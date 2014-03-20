@@ -40,14 +40,20 @@ def recipe_interface():
 def make_veggie(old_recipe):
     return old_recipe.veggitize()                
 
+cuisine_choices = {
+    '1': ingredient.Mexican,
+    '2': ingredient.French,
+    '3': ingredient.Indian
+}
 def change_cuisine(recipe):
     while True:
         print('What kind of cuisine would you like to make it?')
-        print('1 = French')
-        i = raw_input
-        if i in cuisine_choices.keys:
-            new_recipe = recipe.change_cuisine(cuising_choices[i])
-            break
+        print('1 = Mexican')
+        print('2 = French')
+        print('3 = Indian')
+        i = raw_input()
+        if i in cuisine_choices.keys():
+            return recipe.change_cuisine(cuisine_choices[i])
         else:
             print 'Invalid option'
 
@@ -60,7 +66,6 @@ trans_choices = {
     '3': change_cuisine,
 }
 
-cuisine_choices = {'1': ingredient.French}
             
 if __name__ == '__main__':
     recipe_interface()

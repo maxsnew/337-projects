@@ -1,5 +1,6 @@
 import copy
 import nltk
+import random
 import re
 
 import download
@@ -80,17 +81,17 @@ class Ingredient(object):
                         # Must already be veggie.
                         return self
 
-	def healthy(self):
-				#Return a healthier alternative for this ingredient
-				# whole milk --> skim milk
-				# butter --> olive oil
-				# mayo 	--> greek yogurt or avocado
-				# pasta --> whole-grain pasta
-				# bread --> whole-grain bread
-				# ice cream --> cool whip
-		newIngredient = self
-		return newIngredient
-
+        def change_cuisine(self, cuisine):
+                """Return an item of the desired cuisine in the same food group"""
+                fg = self.food_group
+                if fg in cuisine.keys():
+                        new_ing = copy.deepcopy(self)
+                        new_food = random.choice(cuisine[fg])
+                        new_ing.name = new_food
+                        return new_ing
+                else:
+                        return self
+                
 	@staticmethod
 	def parse(db, raw_ingred):
 		"""would this take raw_ingred or our new list created in recipe.py?
@@ -126,8 +127,8 @@ def find_food_group(db, name):
                 return max(set(results), key=results.count)
         else:
                 return None # unknown!
-# Lists of ingredients for most popular cuisines
 
+# Lists of ingredients for most popular cuisines
 Mexican = {
 	100: ['evaporated milk', 
 	'sweetened condensed milk', 
@@ -138,7 +139,7 @@ Mexican = {
         'cotija',
         'panela',
         'crema', 
-        'eggs']
+        'eggs'],
         
         200: ['garlic powder',
         'onion powder',
@@ -156,27 +157,27 @@ Mexican = {
         'anise',
         'vanilla',
         'vanilla beans',
-        'hoja santa']
+        'hoja santa'],
         
-        400: ['vegetable oil', 'lard']
+        400: ['vegetable oil', 'lard'],
         
         500: ['chicken breasts',
         'chicken pieces',
-        'whole chicken']
+        'whole chicken'],
         
         600: ['tomato sauce',
         'tomato paste','red chile sauce',
         'green chile sauce',
         'enchilada sauce','chicken stock',
-        'beef stock' ]
+        'beef stock' ],
         
         900: ['limes',
-        'lemons', 'plantains', ]
+        'lemons', 'plantains', ],
         
         1000: ['pork loin',
         'pork roast',
         'chorizo',
-        'ribs']
+        'ribs'],
         
         1100: ['tomatoes',
         'tomatillos','new mexico chiles',
@@ -196,17 +197,17 @@ Mexican = {
         'bell pepper',
         'avocado',
         'garlic','cucumber',
-        'jicama', 'pinto beans']
+        'jicama', 'pinto beans'],
         
         1300: ['ground beef',
-        'skirt steak', ]
+        'skirt steak', ],
         
         1700: ['veal',
-        'lamb']
+        'lamb'],
         
         1800: ['sugar',
         'honey', 'unsweetened chocolate',
-        'mexican chocolate',]
+        'mexican chocolate',],
         
         2000: ['flour tortillas',
         'corn tortillas',
@@ -259,7 +260,7 @@ Italian = [
 ]
 
 Indian = {
-	200: ['coriander', 'cumin', 'mustard seeds','tumeric', 'cinnamon', 'cardamom','garam masala']
+	200: ['coriander', 'cumin', 'mustard seeds','tumeric', 'cinnamon', 'cardamom','garam masala'],
 	1100: ['chickepeas', 'chili peppers', 'lentils', 'mung beans', 'ginger', 'onions', 'garlic']
 }
 
@@ -271,5 +272,3 @@ French = {
         1100: ['leeks', 'shallots'],
         1800: ['bread'],
 }
-
-
