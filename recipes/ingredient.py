@@ -91,6 +91,16 @@ class Ingredient(object):
                         return new_ing
                 else:
                         return self
+		def make_healthy(self, healthy):
+                """Return an healthy replacement ingred in the same food group"""
+                fg = self.food_group
+                if fg in healthy.keys():
+                        new_ing = copy.deepcopy(self)
+                        new_food = random.choice(healthy[fg])
+                        new_ing.name = new_food
+                        return new_ing
+                else:
+                        return self
                 
 	@staticmethod
 	def parse(db, raw_ingred):
