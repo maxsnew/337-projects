@@ -283,3 +283,15 @@ French = {
         1100: ['leeks', 'shallots'],
         1800: ['bread'],
 }
+
+#List of healthy ingredients
+
+HealthyIng = {
+	100: ['egg whites', 'soy milk', 'almond milk'],
+	400: ['olive oil', 'almond butter', 'peanut butter', 'fish oil']
+	500: ['turkey']
+	600: ['chicken broth', 'beef broth', 'vegetable stock']
+	700: ['deli turkey', 'turkey sausage']
+	2000: ['whole wheat pasta', 'brown rice']
+
+}
