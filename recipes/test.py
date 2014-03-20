@@ -1,9 +1,13 @@
+import cPickle as pkl
+
 import download
+from recipe import Recipe
 
 def main():
-	pie = download.download_recipe("http://allrecipes.com/Recipe/Burrito-Pie")
-	print pie
-	return 
+    with open('chili.pkl') as f:
+        raw_recipe = pkl.load(f)
+        recipe     = Recipe.parse(raw_recipe)
+        print recipe
 	
 if __name__ == '__main__':
-	main()
+    main()

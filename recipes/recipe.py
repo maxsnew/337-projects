@@ -46,23 +46,18 @@ class Recipe(object):
 	def parse(raw_recipe):
 		"""parsing recipe download into recipe structure"""
 		(raw_name, raw_ingredients, raw_directions) = raw_recipe
-		name = parseRecipeName(raw_name)
-		ingredients = parseIngredients(raw_ingredients)
-		directions = parseDirections(raw_directions)
+                tagged_directions = [ 
+                        nltk.pos_tag(nltk.word_tokenize(d))
+                        for d in raw_directions
+                ]
+		name = raw_name
+		ingredients = [Ingredient.parse(i) for i in raw_ingredients]
 
-		tools   = Tool.find_tools(directions)
-		methods = Method.find_methods(directions)
+		directions = [
+                        Direction.parse(d, ingredients)
+                        for d in tagged_directions
+                ]
+		tools   = Tool.find_tools(tagged_directions)
+		methods = Method.find_methods(tagged_directions)
 		return Recipe(name, ingredients, tools, methods, directions)
-                        
-def parseRecipeName(raw_name):
-	"""Parse recipe name from the extracted recipe"""
-        return raw_name
-		
-def parseIngredients(raw_ingredients):
-	"""Parse ingredients from the extracted ingredients"""	
-	return [Ingredient.parse(i) for i in raw_ingredients]
-	
-def parseDirections(raw_directions):
-	"""Parse directions from the extracted directions"""
-	return [Direction.parse(i) for i in raw_directions]
 	

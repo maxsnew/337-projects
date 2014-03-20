@@ -2,35 +2,19 @@ import nltk
 import re
 import download
 
-class Ingredient(object):
+stemmer = nltk.stem.lancaster.LancasterStemmer()
 
+class Ingredient(object):
 	def __init__(self, name, quantity, measurement):
 		self.name = name
+                self.stem = stemmer.stem(name)
 		self.quantity = quantity
 		self.measurement = measurement
 
-        def parseIngredients(self):
-		for item in extract_ingredients(self.raw):
-			current = item['amount']
-			if current == None:
-				newIngredient = Ingredient(item['name'], None, None)
-				newIngredient.showIngredient()
-			else:
-				match = re.search("[a-zA-Z]+", current)
-				if match == None:
-					newIngredient = Ingredient(item['name'], item['amount'], "None")
-					self.ingredients.append(newIngredient)
-					newIngredient.showIngredient()
-					continue
-				else:
-					newIngredient = Ingredient(item['name'], item['amount'], match.group())
-					self.ingredients.append(newIngredient)
-					newIngredient.showIngredient()
-
-	def displayIngred(self):
-		for ingred in self.ingredients:
-			ingred.showIngredient()
-			
+        def is_ingredient(self, txt):
+                """Returns True if the input is probably the same as this ingredient"""
+                other = stemmer.stem(txt)
+                return other == self.stem
 
 	def serialize(self):
 		return {
