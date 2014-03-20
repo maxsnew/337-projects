@@ -113,7 +113,29 @@ Mexican = [
 
 Chinese = []
 
-Italian = []
+Italian = [
+			'canned tomatoes',
+			'dried pasta',
+			'arborio rice',
+			'flour',
+			'cannellini beans',
+			'bread crumbs',
+			'artichokes',
+			'olives',
+			'pine nuts',
+			'capers',
+			'garlic',
+			'proscuitto',
+			'basil',
+			'mozzarella',
+			'extra-virgin olive oil',
+			'balsamic vinegar',
+			'wine',
+			'parmesan',
+			'sage',
+			'thyme',
+			'oregano'
+]
 
 Indian = []
 
