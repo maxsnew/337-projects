@@ -1,6 +1,6 @@
-"""Lists of ingredients for most popular cuisines"""
+# Lists of ingredients for most popular cuisines
 
-Mexican[
+Mexican = [
 		'red chile sauce',
 		'green chile sauce',
 		'enchilada sauce',
@@ -111,36 +111,12 @@ Mexican[
 		'piloncillo'
 ]
 
-Chinese[
-		
-]
+Chinese = []
 
-Italian[
-		'canned tomatoes',
-		'dried pasta',
-		'arborio rice',
-		'flour',
-		'cannellini beans',
-		'bread crumbs',
-		'artichokes',
-		'olives',
-		'pine nuts',
-		'capers',
-		'garlic',
-		'proscuitto',
-		'basil',
-		'mozzarella',
-		'extra-virgin olive oil',
-		'balsamic vinegar',
-		'wine',
-		'parmesan',
-		'sage',
-		'thyme',
-		'oregano'
-]
+Italian = []
 
-Indian[]
+Indian = []
 
-French[]
+French = []
 
 
