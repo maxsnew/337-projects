@@ -18,11 +18,14 @@ class Recipe(object):
                 header = 'Recipe: ' + self.name
                 ingred_header = 'You will need the following ingredients: '
                 ingreds = pretty_list(self.ingredients)
+                methods_header = 'The primary cooking method is: '
+                primary_method = self.methods[0].name
+                
                 tools_header = 'And the following tools:'
                 tools   = pretty_list(self.tools)
                 dirs_header = 'Here are the directions:'
                 directions  = pretty_list(self.directions)
-                return '\n'.join([header, '\n',ingred_header,ingreds, '\n',tools_header,tools,'\n',dirs_header, directions])
+                return '\n'.join([header, '\n',ingred_header,ingreds, methods_header, primary_method, '\n',tools_header,tools,'\n',dirs_header, directions])
 
         def change_recipe(self, ingredient_update):
                 new_recipe = copy.deepcopy(self)
