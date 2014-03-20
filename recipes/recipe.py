@@ -43,7 +43,7 @@ class Recipe(object):
 			self.methods = newMethods
 
         @staticmethod
-	def parse(raw_recipe):
+	def parse(db, raw_recipe):
 		"""parsing recipe download into recipe structure"""
 		(raw_name, raw_ingredients, raw_directions) = raw_recipe
                 tagged_directions = [ 
@@ -51,7 +51,7 @@ class Recipe(object):
                         for d in raw_directions
                 ]
 		name = raw_name
-		ingredients = [Ingredient.parse(i) for i in raw_ingredients]
+		ingredients = [Ingredient.parse(db, i) for i in raw_ingredients]
 
 		directions = [
                         Direction.parse(d, ingredients)
