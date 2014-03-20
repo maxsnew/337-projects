@@ -62,9 +62,9 @@ class Recipe(object):
 	def parse(db, raw_recipe):
 		"""parsing recipe download into recipe structure"""
 		(raw_name, raw_ingredients, raw_directions) = raw_recipe
+                tokenized_dirs = [ nltk.word_tokenize(d) for d in raw_directions]
                 tagged_directions = [ 
-                        nltk.pos_tag(nltk.word_tokenize(d))
-                        for d in raw_directions
+                        nltk.pos_tag(d) for d in tokenized_dirs
                 ]
 		name = raw_name
 		ingredients = [Ingredient.parse(db, i) for i in raw_ingredients]
@@ -74,7 +74,12 @@ class Recipe(object):
                         for d in tagged_directions
                 ]
 		methods = Method.find_methods(directions)
-		tools   = Tool.find_tools(methods)
+                tok_text = [
+                        word
+                        for d in tokenized_dirs
+                        for word in d                        
+                ]
+		tools   = Tool.find_tools(tok_text)
 		return Recipe(name, ingredients, tools, methods, directions)
 	
 def pretty_list(l):

@@ -2,45 +2,56 @@ import nltk
 import download
 from method import Method
 
-#stemmer = nltk.stem.lancaster.LancasterStemmer()
+stemmer = nltk.stem.lancaster.LancasterStemmer()
+st = stemmer.stem
+
+tool_map =  {st('bake'): 'oven',
+             st('broil'): 'oven',
+             st('roast'): 'oven',
+             st('preheat'): 'oven',
+             st( 'grill'): 'grill',
+             st( 'beat'):'whisk',
+             st('whisk'):'whisk',
+             st( 'boil'): 'pot',
+             st('blanch'): 'pot',
+             st('poach'): 'pot',
+             st( 'carve'): 'knife',
+             st('chop'): 'knife',
+             st('cut'): 'knife',
+             st('slice'): 'knife',
+             st('dice'): 'knife',
+             st( 'fry'): 'skillet',
+             st('saute'): 'skillet',
+             st('simmer'): 'skillet',
+             st( 'grate'): 'grater',
+             st( 'mix'): 'spoon',
+             st('stir'): 'spoon',
+             st('blend'): 'blender',
+             st('measure'): 'measuring spoon',
+             st('weigh'): 'scale',
+             st('peel'): 'peeler',
+             st( 'drain'): 'colander',
+             st('steam'): 'colander',
+             st('flip'): 'spatula',
+             st('roll'): 'rolling pin',
+}
 
 class Tool(object):
-	def __init__(self, name, setting):
+	def __init__(self, name):
 		self.name = name
-	
+
+        def pretty(self):
+                return self.name
+                
         @staticmethod
-        def find_tools(methods):
+        def find_tools(text):
                 """Returns a list of tools"""
                 tools = []
-                for i in methods:	
-                        if (i == 'bake' or i == 'broil' or i == 'roast' or i == 'preheat'):
-                                tools.extend('oven')
-                        elif (i == 'grill'):
-                                tools.extend('grill')
-                        elif (i == 'beat' or i == 'whisk'):
-                                tools.extend('whisk')
-                        elif (i == 'boil' or i == 'blanch' or i == 'poach'):
-                                tools.extend('pot')
-                        elif (i == 'carve' or i == 'chop' or i == 'cut' or i == 'slice' or i == 'dice'):
-                                tools.extend('knife')
-                        elif (i == 'fry' or i == 'saute' or i == 'simmer'):
-                                tools.extend('skillet')
-                        elif (i == 'grate'):
-                                tools.extend('grater')
-                        elif (i == 'mix' or i == 'stir' or i == 'blend'):
-                                tools.extend('electric mixer')
-                        elif (i == 'measure'):
-                                tools.extend('measuring spoon')
-                        elif (i == 'peel'):
-                                tools.extend('peeler')
-                        elif (i == 'steam' or i == 'drain'):
-                                tools.extend('colander')
-                        elif (i == 'strain'):
-                                tools.extend('strainer')
-                        elif (i == 'flip'):
-                                tools.extend('spatula')
-                        elif (i == 'roll'):
-                                tools.extend('rolling pin')
+                for tok in text:
+                        stemmed = st(tok)
+                        if stemmed in tool_map:
+                                tools.append(tool_map[stemmed])
+                        
                 tools_noDups = set(tools)
                 return [
                         Tool(t) for t in tools_noDups
