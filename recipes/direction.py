@@ -24,7 +24,6 @@ class Direction(object):
         def update_ingredients(self, olds, news):
                 new_dir = self
                 for i in range(len(olds)):
-                        print i
                         old = olds[i]
                         new = news[i]
                         new_dir = new_dir.update_ingredient(old, new)
@@ -32,7 +31,6 @@ class Direction(object):
                 
 	def update_ingredient(self, old, new):
                 if old is new:
-                        print 'nop'
                         return Direction(self.tagged)
                 new_tagged = [
                         replace_tagged(tagged, old, new)
