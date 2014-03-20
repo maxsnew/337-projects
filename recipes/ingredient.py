@@ -222,41 +222,41 @@ Mexican = {
       
 
 Chinese = {
-	200:['ginger',]
+	200:['ginger'],
 	400: ['rice vinegar',
-        'toasted sesame oil']
+        'toasted sesame oil'],
         600: ['chili sauce',
         'soy sauce',
         'hoisin sauce',
-        'oyster sauce',]
-        1100: ['Chinese mushrooms',]
-        1400: ['rice wine',]
-        1600: ['fermented black beans',]
-        2000: ['rice',]
+        'oyster sauce'],
+        1100: ['Chinese mushrooms'],
+        1400: ['rice wine'],
+        1600: ['fermented black beans'],
+        2000: ['rice']
 }
 
 Italian = {
 	100: ['mozzarella',
-        'parmesan',]
+        'parmesan'],
 	200: ['capers',
         'garlic',
         'basil',
         'sage',
         'thyme',
-        'oregano']
+        'oregano'],
         400: ['extra-virgin olive oil',
-        'balsamic vinegar',]
-        900: ['olives',]
-        1000: ['proscuitto',]
+        'balsamic vinegar'],
+        900: ['olives'],
+        1000: ['proscuitto'],
         1100: ['canned tomatoes',
-        'artichokes',]
-        1400: ['wine',]
+        'artichokes'],
+        1400: ['wine'],
         1600: ['cannellini beans',
-        'pine nuts',]
+        'pine nuts'],
         2000: ['dried pasta',
         'arborio rice',
         'flour',
-        'bread crumbs',]
+        'bread crumbs']
         
 }
 
