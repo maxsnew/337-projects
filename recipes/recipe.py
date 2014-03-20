@@ -1,4 +1,6 @@
+import copy
 import nltk
+
 from ingredient import Ingredient
 from tool import Tool
 from method import Method
@@ -23,15 +25,16 @@ class Recipe(object):
                 return '\n'.join([header, '\n',ingred_header,ingreds, '\n',tools_header,tools,'\n',dirs_header, directions])
 
 	def veggitize(self):
+                new_recipe = copy.deepcopy(self)
 		for oldIngredient in self.ingredients:
 			newIngredient = oldIngredient.veggitize()
 			newDirections = [
                                 direction.updateIngredient(oldIngredient, newIngredient)
-				for direction in self.directions
+				for direction in new_recipe.directions
                                 
 			]
-			self.directions = newDirections
-
+			new_recipe.directions = newDirections
+                return new_recipe
 	def makeHealthy(self):
 		for oldIngredient in self.ingredients:
 			newIngredient = oldIngredient.healthy()

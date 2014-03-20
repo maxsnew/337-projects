@@ -38,8 +38,8 @@ def recipe_interface():
                     else:
                         print('Please pick a number corresponding to one of the available options')
                         # Then print the new recipe
-                        print("Here's your new recipe!")
-                        print(recipe.pretty_recipe())
+                print("Here's your new recipe!")
+                print(new_recipe.pretty())
 
 if __name__ == '__main__':
     recipe_interface()
