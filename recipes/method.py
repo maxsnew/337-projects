@@ -6,7 +6,6 @@ stemmer = nltk.stem.lancaster.LancasterStemmer()
 class Method(object):
 	def __init__(self, name):
 		self.name = name
-		self.helper = helper
 
         @staticmethod
         def find_methods(directions):
