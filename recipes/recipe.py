@@ -37,9 +37,6 @@ class Recipe(object):
                 new_recipe.name        = update_name(self.name, self.ingredients, new_ingredients)
                 new_recipe.ingredients = new_ingredients
                 new_recipe.directions  = new_directions
-                if new_recipe.ingredients is self.ingredients:
-                        print 'wtf'
-                        raise Exception('wtf')
                 return new_recipe
 	def makeHealthy(self):
 		for oldIngredient in self.ingredients:
