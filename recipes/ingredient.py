@@ -37,13 +37,22 @@ fg_map = {
 meat_groups = [500, 700, 1000, 1300, 1700]
 
 class Ingredient(object):
-	def __init__(self, food_group, name, quantity, measurement):
+	def __init__(self, raw, food_group, name, quantity, measurement):
+                self.raw = raw
 		self.name = name
                 self.stems = [stemmer.stem(tok) for tok in nltk.word_tokenize(name)]
 		self.quantity = quantity
 		self.measurement = measurement
                 self.food_group = food_group
 
+        def pretty(self):
+                amount = self.raw['amount']
+                name = self.raw['name']
+                if amount:
+                        return amount + name
+                else: 
+                        return name
+                
         def is_ingredient(self, txt):
                 """Returns True if the input is probably the same as this ingredient"""
                 other = stemmer.stem(txt)
@@ -59,11 +68,11 @@ class Ingredient(object):
         def is_meat(self):
                 return self.food_group in meat_groups
                 
-	def makeVeggie(self):
+	def veggitize(self):
                 """Return a vegetarian substitue for this ingredient"""
                 if self.is_meat:
                         # TOFUify!
-                        newIngredient = deepcopy(self)
+                        newIngredient = copy.deepcopy(self)
                         newIngredient.name = 'TOFU'
                         newIngredient.food_group = 1600
                         return newIngredient
@@ -91,16 +100,16 @@ class Ingredient(object):
                 food_group = find_food_group(db, name)
 
 		if amount is None:
-			newIngredient = Ingredient(food_group, name, None, None)
+			newIngredient = Ingredient(raw_ingred, food_group, name, None, None)
 			return newIngredient
 		else:
 			match = re.search("[a-zA-Z]+", amount)
 			if match == None:
-				newIngredient = Ingredient(food_group, name, amount, None)
+				newIngredient = Ingredient(raw_ingred, food_group, name, amount, None)
 			else:
 				measurement = match.group()
 				amount = amount.replace(measurement, '')
-				newIngredient = Ingredient(food_group, name, amount, match.group())
+				newIngredient = Ingredient(raw_ingred, food_group, name, amount, match.group())
 
 		return newIngredient
 
