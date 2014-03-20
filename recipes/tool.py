@@ -42,6 +42,9 @@ class Tool(object):
 
         def pretty(self):
                 return self.name
+
+        def serialize(self):
+                return self.name.lower()
                 
         @staticmethod
         def find_tools(text):

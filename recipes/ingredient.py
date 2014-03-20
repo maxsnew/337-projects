@@ -61,9 +61,9 @@ class Ingredient(object):
 
 	def serialize(self):
 		return {
-			'name': self.name,
-			'quantity': self.quantity,
-			'measurement': self.measurement
+			'name': self.name.lower(),
+			'quantity': self.quantity if self.quantity is not None else 'unkown',
+			'measurement': self.measurement.lower() if self.measurement is not None else 'unkown'
 		}
                 
         def is_meat(self):

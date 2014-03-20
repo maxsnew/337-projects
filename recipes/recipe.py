@@ -19,13 +19,21 @@ class Recipe(object):
                 ingred_header = 'You will need the following ingredients: '
                 ingreds = pretty_list(self.ingredients)
                 methods_header = 'The primary cooking method is: '
-                primary_method = self.methods[0].name
+                
+                primary_method = self.methods[0].name if self.methods else 'Unkown'
                 
                 tools_header = 'You will need the following tools:'
                 tools   = pretty_list(self.tools)
                 dirs_header = 'Here are the directions:'
                 directions  = pretty_list(self.directions)
                 return '\n'.join([header, '\n',ingred_header,ingreds, methods_header, primary_method, tools_header,tools,'\n',dirs_header, directions])
+
+        def serialize(self):
+                return {
+                        'ingredients': [i.serialize() for i in self.ingredients],
+                        'cooking method': self.methods[0].name.lower() if self.methods else 'unkown',
+                        'cooking tools':  [t.serialize() for t in self.tools]
+                }
 
         def change_recipe(self, ingredient_update):
                 new_recipe = copy.deepcopy(self)
