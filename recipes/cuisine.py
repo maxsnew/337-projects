@@ -167,7 +167,18 @@ Indian = [
 ]
 
 French = [
-			
+			'bread',
+			'butter',
+			'cheese',
+			'fleur de sel',
+			'herbes de provence',
+			'leeks',
+			'mustard',
+			'olive oil',
+			'shallots',
+			'tarragon',
+			'vinegar',
+			'wine'			
 ]
 
 
