@@ -80,6 +80,18 @@ class Ingredient(object):
                 else:
                         # Must already be veggie.
                         return self
+                        
+        def deveggitize(self):
+                """Return a beef substitue for tofu"""
+                if self == 'TOFU':
+                        # Meat and Greet!
+                        newIngredient = copy.deepcopy(self)
+                        newIngredient.name = 'BEEF'
+                        newIngredient.food_group = 1300
+                        return newIngredient
+                else:
+                        # Must already be meat.
+                        return self
 
         def change_cuisine(self, cuisine):
                 """Return an item of the desired cuisine in the same food group"""
