@@ -111,7 +111,19 @@ Mexican = [
 		'piloncillo'
 ]
 
-Chinese = []
+Chinese = [
+			'chili sauce',
+			'Chinese mushrooms',
+			'soy sauce',
+			'fermented black beans',
+			'ginger',
+			'hoisin sauce',
+			'oyster sauce',
+			'rice',
+			'rice vinegar',
+			'rice wine',
+			'toasted sesame oil'
+]
 
 Italian = [
 			'canned tomatoes',
