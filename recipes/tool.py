@@ -6,9 +6,42 @@ class Tool(object):
 		self.name = name
 	
         @staticmethod
-        def find_tools(directions):
-                """TODO: actually implement"""
-                return []
+        def find_tools(directions): #where would it use directions?
+                """Returns a list of tools"""
+				tools = [
+						'oven',
+						'grill',
+						'whisk',
+						'pot',
+						'knife',
+						'skillet',
+						'grater',
+						'mixer',
+						'measuring spoon',
+						'measuring cup',
+						'peeler',
+						'colander',
+						'strainer',
+						'spatula',
+						'rolling pin',
+						'bowl',
+						'blender',
+						'cutting board',
+						'ladle',
+						'oven mits',
+						'baking pan',
+						'baking sheet',
+						'tongs',
+						'shears',
+						'thermometer',
+						'timer',
+						'baster',
+						'blow torch',
+						'funnel'					
+                ]
+				return [
+						Tool(t) for t in tools
+				]
 
 # def listTools(raw_directions):
 # 	"""Not sure how to do this one, maybe look at cooking methods and match commonly used cooking verbs with hard coded tool nouns"""
