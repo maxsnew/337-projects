@@ -149,8 +149,25 @@ Italian = [
 			'oregano'
 ]
 
-Indian = []
+Indian = [
+			'mung beans',
+			'lentils',
+			'chickpeas',
+			'cardamom',
+			'chili peppers',
+			'cinnamon',
+			'coriander',
+			'cumin',
+			'garam masala',
+			'ginger',
+			'mustard seeds',
+			'onions',
+			'garlic',
+			'turmeric'
+]
 
-French = []
+French = [
+			
+]
 
 
