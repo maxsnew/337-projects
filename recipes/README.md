@@ -1,5 +1,20 @@
-Recipe Transformations Project
-==============================
+TRANSFORMERS
+============
+
+A Recipe Transformation Tool
+
+Running
+-------
+To run the interface shown in our presentation, do a
+```
+$ python interface.py
+```
+
+To see a json formatted version of the internal structure of a recipe,
+do a
+```
+$ python dump_recipe.py
+```
 
 Dependencies
 ------------
