@@ -63,7 +63,9 @@ class Ingredient(object):
 		return {
 			'name': self.name.lower(),
 			'quantity': self.quantity if self.quantity is not None else 'unkown',
-			'measurement': self.measurement.lower() if self.measurement is not None else 'unkown'
+			'measurement': self.measurement.lower() if self.measurement is not None else 'unkown',
+                        'descriptor': '',
+                        'preparation': ''
 		}
                 
         def is_meat(self):
