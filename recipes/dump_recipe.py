@@ -5,12 +5,16 @@ import sys
 import download as d
 from recipe import Recipe
 
-def main():
+def dump_recipe(url):
     with sqlite3.connect('db/food.db') as c:
-        url    = raw_input('Please input a valid allrecipes.com recipe url')
         raw    = d.download_recipe(url)
         recipe = Recipe.parse(c, raw)
-        print json.dumps(recipe.serialize(), indent=4)
+        return json.dumps(recipe.serialize(), indent=4)
+    
+
+def main():
+    url    = raw_input('Please input a valid allrecipes.com recipe url')
+    print dump_recipe(url)
 
 if __name__ == '__main__':
     main()
