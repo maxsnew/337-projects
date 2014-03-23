@@ -9,7 +9,7 @@ def dump_recipe(url):
     with sqlite3.connect('db/food.db') as c:
         raw    = d.download_recipe(url)
         recipe = Recipe.parse(c, raw)
-        return recipe.serialize()
+        return json.dumps(recipe.serialize(), indent=4)
     
 
 def main():
